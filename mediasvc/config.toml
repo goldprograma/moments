@@ -1,0 +1,25 @@
+runmode = "dev" # dev  production
+serviceName="mediasvc"
+#后端地址
+httpPort=8085
+pprofPort=8185
+
+ [ali]
+    [ali.oss]
+        region="oss-cn-hongkong"
+        cdnRegion="oss-accelerate"
+        scheme="http"
+        host="aliyuncs.com"
+        accessKeyId = "LTAI4Fwyb4cHYncBEDbDApLQ"
+        accessKeySecret = "ZqupSzEaBWWbgcWaFTEq9AVoELmpWD"
+        bucketName = "wnsr-pyq"
+
+ [logs]
+filePath="./" #文件目录 结尾带/
+level=-1  #日志等级 	-1 debug  ~  5 fatal
+#彩聊机器人
+[robot]
+endpoint = "http://106.75.154.34:15423"
+token ="1300002019:3Xh4MKR0dt6bfwoWBY6cbM24"
+roomType = 3 #1 是用户 3是群
+roomID = 1400269991 # 用ID 或者群ID

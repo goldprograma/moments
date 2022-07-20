@@ -1,0 +1,119 @@
+syntax = "proto3";
+package moment;
+
+import "media.proto";
+import "common.proto";
+
+option go_package = ".;moment";
+
+//通知朋友圈消息 
+service CommentDBService {
+    rpc Page(CommentPageReq)returns(CommentPageRep){};//查评论
+    rpc PageOrderByThumbup(CommentPageReq)returns(CommentPageRep){};//查评论按照朋友点赞排序
+    rpc AllPage(CommentPageReq)returns(CommentPageRep){}; //查所有
+    rpc ReplayPage(ReplayPageReq)returns(ReplayPageResp){};//查回复
+	rpc Add(Comment)returns(Comment){};
+	rpc Delete(Comment)returns(Comment){};
+    rpc Get(Comment)returns(Comment){};
+}
+
+message GetCommentCountResp{
+    int64 Count = 1;
+}
+
+message ReplayPageResp{
+    repeated Comment Comments = 1;
+}
+
+message ReplayPageReq{
+    //操作人
+   int32 CreateBy =1;
+   //帖子号
+   int64 ForumID  =2; 
+   // 发帖人
+   int32 SupUID =3; 
+   // 评论ID
+   int64 CommentID   =4;//用于Offset
+   int32 Limit     =5;
+   // 一级回复ID
+   int64 SupID  = 6;  
+   string Sort = 7;
+   string Order = 8;
+   repeated int32 Friends = 9;
+}
+
+message CommentPageReq{
+     //操作人
+    int32 CreateBy =1;
+    //帖子号
+    int64 ForumID  =2; 
+    // 评论ID
+	int64 CommentID   =3;//用于Offset
+    int32 Limit     =4;//评论条数
+    // 一级回复ID
+    string Sort = 5;
+    string Order = 6;
+    int32 ReplayLimit = 7; //回复条数
+    // repeated int32 Friends = 9;
+}
+
+message CommentPageRep{
+    repeated Comment Comments = 1;
+}
+
+message Comment{
+    // ID 主键
+    // @inject_tag: db:"id"
+	int32 ID =1;
+    // CommentID 评论id
+    // @inject_tag: db:"comment_id"
+	int64 CommentID =2;
+    // ForumID 主贴id
+    // @inject_tag: db:"forum_id"
+    int64 ForumID =3;
+    
+        // @inject_tag: db:"forum_user"
+    int32 ForumUser =4;
+    
+    // Content 内容
+    // @inject_tag: db:"content"
+    string Content  =5;
+    // ContentType 正文类别 1文字 2图片 3视频
+	// @inject_tag: db:"content_type"
+    int32 ContentType =6;
+     // AtEntity @处理
+	// @inject_tag: db:"at_entity"
+    string AtEntity = 7;
+    // ThumbUp 点赞次数
+	// @inject_tag: db:"thumb_up"
+	int64 ThumbUp =8;
+    // ReplayID 回复id
+    // @inject_tag: db:"replay_id"
+	int64 ReplayID =9;
+    // ReplayUID 回复人
+    // @inject_tag: db:"replay_uid"
+	int32 ReplayUID =10;
+    // SupID 一级评论ID
+    // @inject_tag: db:"sup_id"
+	int64 SupID  =11;
+    // SupUser 一级评论人
+    // @inject_tag: db:"sup_user"
+	int32 SupUser  =12;
+    // CreateAt 回复时间
+    // @inject_tag: db:"create_at"
+	int64 CreateAt  =13;
+    // CreateBy 回复人
+    // @inject_tag: db:"create_by"
+    int32  CreateBy  =14;
+ 	//回复次数
+	// @inject_tag: db:"sub_comments" 
+    int64 SubComments =15;
+    bool HasThumb = 16;
+	// 媒体文件
+    repeated Media Medias =17;
+    repeated HighLight Entitys =18;//[]*pkg.HighLight
+    //回复人用户信息
+    imapigateway.userInfo Creator =19;
+    imapigateway.userInfo ReplayUser =20;
+    repeated Comment SubComment=21;
+}

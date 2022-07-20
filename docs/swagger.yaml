@@ -1,0 +1,2523 @@
+definitions:
+  imapigateway.UserInfo:
+    properties:
+      about:
+        type: string
+      access_hash:
+        type: integer
+      address:
+        type: string
+      birthday:
+        type: integer
+      bot:
+        type: boolean
+      bot_chat_history:
+        type: boolean
+      bot_info_version:
+        type: integer
+      bot_inline_geo:
+        type: boolean
+      bot_inline_placeholder:
+        type: string
+      bot_nochats:
+        type: boolean
+      cluster_region:
+        type: integer
+      contact:
+        type: boolean
+      country_code:
+        type: string
+      created:
+        type: integer
+      deleted:
+        type: boolean
+      first_name:
+        type: string
+      font_rgb:
+        type: string
+      group_id:
+        type: integer
+      lang_code:
+        type: string
+      last_logout:
+        type: integer
+      last_name:
+        type: string
+      local_phone:
+        type: string
+      min:
+        type: boolean
+      mutal_contact:
+        type: boolean
+      phone:
+        type: string
+      photo:
+        items:
+          type: integer
+        type: array
+      restricted:
+        type: boolean
+      restriction_reason:
+        type: string
+      self:
+        type: boolean
+      sex:
+        type: integer
+      show_contact_phone:
+        type: boolean
+      star_mark:
+        type: boolean
+      status:
+        type: integer
+      user_id:
+        type: integer
+      user_lable:
+        type: integer
+      user_level:
+        type: integer
+      user_type:
+        type: integer
+      username:
+        type: string
+      verified:
+        type: boolean
+    type: object
+  moment.Comment:
+    properties:
+      AtEntity:
+        description: |-
+          AtEntity @处理
+          @inject_tag: db:"at_entity"
+        type: string
+      CommentID:
+        description: |-
+          CommentID 评论id
+          @inject_tag: db:"comment_id"
+        type: integer
+      Content:
+        description: |-
+          Content 内容
+          @inject_tag: db:"content"
+        type: string
+      ContentType:
+        description: |-
+          ContentType 正文类别 1文字 2图片 3视频
+          @inject_tag: db:"content_type"
+        type: integer
+      CreateAt:
+        description: |-
+          CreateAt 回复时间
+          @inject_tag: db:"create_at"
+        type: integer
+      CreateBy:
+        description: |-
+          CreateBy 回复人
+          @inject_tag: db:"create_by"
+        type: integer
+      Creator:
+        $ref: '#/definitions/imapigateway.UserInfo'
+        description: 回复人用户信息
+      Entitys:
+        items:
+          $ref: '#/definitions/moment.HighLight'
+        type: array
+      ForumID:
+        description: |-
+          ForumID 主贴id
+          @inject_tag: db:"forum_id"
+        type: integer
+      ForumUser:
+        description: '@inject_tag: db:"forum_user"'
+        type: integer
+      HasThumb:
+        type: boolean
+      ID:
+        description: |-
+          ID 主键
+          @inject_tag: db:"id"
+        type: integer
+      Medias:
+        description: 媒体文件
+        items:
+          $ref: '#/definitions/moment.Media'
+        type: array
+      ReplayID:
+        description: |-
+          ReplayID 回复id
+          @inject_tag: db:"replay_id"
+        type: integer
+      ReplayUID:
+        description: |-
+          ReplayUID 回复人
+          @inject_tag: db:"replay_uid"
+        type: integer
+      ReplayUser:
+        $ref: '#/definitions/imapigateway.UserInfo'
+      SubComment:
+        items:
+          $ref: '#/definitions/moment.Comment'
+        type: array
+      SubComments:
+        description: |-
+          回复次数
+          @inject_tag: db:"sub_comments"
+        type: integer
+      SupID:
+        description: |-
+          SupID 一级评论ID
+          @inject_tag: db:"sup_id"
+        type: integer
+      SupUser:
+        description: |-
+          SupUser 一级评论人
+          @inject_tag: db:"sup_user"
+        type: integer
+      ThumbUp:
+        description: |-
+          ThumbUp 点赞次数
+          @inject_tag: db:"thumb_up"
+        type: integer
+    type: object
+  moment.Follow:
+    properties:
+      CreateAt:
+        description: |-
+          CreateAt 关注时间
+          @inject_tag: db:"create_at"
+        type: integer
+      CreateBy:
+        description: |-
+          UserID 用户ID
+          @inject_tag: db:"create_by"
+        type: integer
+      EachOther:
+        description: |-
+          EachOther 是否互相关注
+          @inject_tag: db:"each_other" update:"force"
+        type: integer
+      FollowID:
+        description: '@inject_tag: db:"follow_id"'
+        type: integer
+      FollowSource:
+        description: |-
+          FollowSource 关注来源 给直播使用 暂不开启
+          @inject_tag: db:"follow_source"
+        type: integer
+      FollowUID:
+        description: |-
+          FollowUID 被关注人ID
+          @inject_tag: db:"follow_uid"
+        type: integer
+      ID:
+        description: '@inject_tag: db:"id"'
+        type: integer
+    type: object
+  moment.ForumFriend:
+    properties:
+      CommentCount:
+        description: |-
+          回复次数
+          @inject_tag: db:"comment_count"
+        type: integer
+      Comments:
+        description: Comments 评论
+        items:
+          $ref: '#/definitions/moment.Comment'
+        type: array
+      Content:
+        description: |-
+          发贴正文
+          @inject_tag: db:"content"
+        type: string
+      ContentEntity:
+        description: |-
+          内容解析@7 URL高亮
+          @inject_tag: db:"content_entity"
+        type: string
+      ContentType:
+        description: |-
+          1纯文字 2图片 3视频
+          @inject_tag: db:"content_type"
+        type: integer
+      CreateAt:
+        description: |-
+          发贴时间
+          @inject_tag: db:"create_at"
+        type: integer
+      CreateBy:
+        description: |-
+          用户编号
+          @inject_tag: db:"create_by"
+        type: integer
+      Creator:
+        $ref: '#/definitions/imapigateway.UserInfo'
+        description: Creator 发帖人
+      Entitys:
+        items:
+          $ref: '#/definitions/moment.HighLight'
+        type: array
+      ForumID:
+        description: |-
+          发贴编号
+          @inject_tag: db:"forum_id"
+        type: integer
+      HasFollow:
+        description: HasFollow 是否关注
+        type: boolean
+      HasThumb:
+        description: HasThumb 是否点赞
+        type: boolean
+      ID:
+        description: '@inject_tag: db:"id"'
+        type: integer
+      IsRecommend:
+        description: IsRecommend 是否推荐帖子
+        type: boolean
+      Latitude:
+        description: |-
+          纬度
+          @inject_tag: db:"latitude"
+        type: number
+      LimitVIP:
+        description: 推荐帖子回复限制VIP等级
+        type: integer
+      LocationAddress:
+        description: |-
+          地理位置名称详细名称
+          @inject_tag: db:"location_address"
+        type: string
+      LocationCity:
+        description: |-
+          地理位置城市
+          @inject_tag: db:"location_city"
+        type: string
+      LocationName:
+        description: |-
+          地理位置名称
+          @inject_tag: db:"location_name"
+        type: string
+      Longitude:
+        description: |-
+          经度
+          @inject_tag: db:"longitude"
+        type: number
+      Medias:
+        description: 媒体文件
+        items:
+          $ref: '#/definitions/moment.Media'
+        type: array
+      Mention:
+        description: |-
+          提及到
+          @inject_tag: db:"mention"
+        type: string
+      Permission:
+        description: |-
+          权限1公开2私密3粉丝4指定部分可见5不给谁看
+          @inject_tag: db:"permission"
+        type: integer
+      PermissionUser:
+        description: |-
+          特别用户
+          @inject_tag: db:"permission_user"
+        type: string
+      RoundNum:
+        type: integer
+      ThumbUp:
+        description: |-
+          点赞次数
+          @inject_tag: db:"thumb_up"
+        type: integer
+      ThumbUserInfos:
+        description: ThumbUserInfos 点赞人的用户信息
+        items:
+          $ref: '#/definitions/imapigateway.UserInfo'
+        type: array
+      ThumbUsers:
+        description: ThumbUsers 点赞用户 默认给10条 如果有更多 请求点赞的page路由
+        items:
+          type: integer
+        type: array
+      Topic:
+        description: |-
+          话题
+          @inject_tag: db:"topic"
+        items:
+          type: integer
+        type: array
+      Type:
+        description: |-
+          帖子类型 同城 足球 电影。。。
+          @inject_tag: db:"type"
+        type: integer
+      UserID:
+        description: |-
+          所属用户ID
+          @inject_tag: db:"user_id"
+        type: integer
+      ViewState:
+        description: |-
+          可见状态
+          @inject_tag: db:"view_state"
+        type: integer
+    type: object
+  moment.ForumIgnore:
+    properties:
+      CreateAt:
+        description: |-
+          CreateAt 发贴时间
+          @inject_tag: db:"create_at"
+        type: integer
+      CreateBy:
+        description: |-
+          CreateBy 用户编号
+          @inject_tag: db:"create_by"
+        type: integer
+      ForumID:
+        description: '@inject_tag: db:"forum_id"'
+        type: integer
+      ID:
+        description: '@inject_tag: db:"id"'
+        type: integer
+      IgnoreID:
+        description: '@inject_tag: db:"ignore_id"'
+        type: integer
+    type: object
+  moment.HighLight:
+    properties:
+      AccessHash:
+        type: integer
+      Limit:
+        type: integer
+      Offset:
+        type: integer
+      Type:
+        type: integer
+      ULimit:
+        type: integer
+      UOffset:
+        type: integer
+      UserID:
+        type: integer
+      UserName:
+        type: string
+    type: object
+  moment.IgnoreSlice:
+    properties:
+      Ignores:
+        items:
+          $ref: '#/definitions/moment.UserIgnore'
+        type: array
+    type: object
+  moment.Media:
+    properties:
+      CreateAt:
+        description: |-
+          CreateTime 创建时间
+          @inject_tag: db:"create_at"
+        type: integer
+      DeleteAt:
+        description: '@inject_tag: db:"delete_at"'
+        type: integer
+      Duration:
+        description: |-
+          Duration 视频文件时长
+          @inject_tag: db:"duration"
+        type: integer
+      Ext:
+        description: |-
+          Ext 附件类型 1=表示图片(bmp、jpg、jpeg、png) 2=视频(gif、mp4等) 3=音频 4=DOC文件pdf,txt, doc,docx, xls, ppt 等 5=压缩文件(zip,rar,tar) 6=需要获取其它数据URL 7=其它
+          @inject_tag: db:"ext"
+        type: integer
+      Hash:
+        description: |-
+          Hash 换算出来的文件的hash 值
+          @inject_tag: db:"hash"
+        type: string
+      Height:
+        description: |-
+          Height 图片尺寸
+          @inject_tag: db:"height"
+        type: integer
+      ID:
+        description: '@inject_tag: db:"id"'
+        type: integer
+      MainID:
+        description: |-
+          ForumID 发贴编号
+          @inject_tag: db:"main_id"
+        type: integer
+      Name:
+        description: |-
+          Name 文件名
+          @inject_tag: db:"name"
+        type: string
+      Region:
+        description: |-
+          Region s3 区域 以后可能需要分区域存储
+          @inject_tag: db:"region"
+        type: string
+      Seq:
+        description: |-
+          Seq 图片序号
+          @inject_tag: db:"seq"
+        type: integer
+      Size:
+        description: |-
+          Size 文件大小
+          @inject_tag: db:"size"
+        type: integer
+      Status:
+        description: '@inject_tag: db:"status"'
+        type: integer
+      Thum:
+        description: |-
+          Thum 缩略图信息
+          @inject_tag: db:"thum"
+        type: string
+      ThumSize:
+        description: |-
+          ThumSize 缩略图大小
+          @inject_tag: db:"thum_size"
+        type: integer
+      Width:
+        description: |-
+          Width 图片尺寸
+          @inject_tag: db:"width"
+        type: integer
+    type: object
+  moment.Tag:
+    properties:
+      CreateAt:
+        description: |-
+          CreateAt 创建时间
+          @inject_tag: db:"create_at"
+        type: integer
+      CreateBy:
+        description: |-
+          CreateBy 创建人
+          @inject_tag: db:"create_by"
+        type: integer
+      ID:
+        description: |-
+          ID 主键
+          @inject_tag: db:"id"
+        type: integer
+      TagID:
+        description: |-
+          TagID 标签ID
+          @inject_tag: db:"tag_id"
+        type: integer
+      TagName:
+        description: |-
+          TagName 标签名称(*此字段必传)
+          @inject_tag: db:"tag_name"
+        type: string
+    type: object
+  moment.TagAddReq:
+    properties:
+      Tag:
+        $ref: '#/definitions/moment.Tag'
+      UserTags:
+        items:
+          $ref: '#/definitions/moment.UserTag'
+        type: array
+    type: object
+  moment.Thumb:
+    properties:
+      CommentID:
+        description: |-
+          ForumID 帖子ID
+          @inject_tag: db:"comment_id"
+        type: integer
+      CommentUID:
+        description: |-
+          ForumUID帖子拥有者Id
+          @inject_tag: db:"comment_uid"
+        type: integer
+      CreateAt:
+        description: |-
+          @inject_tag: db:"create_at"
+          CreateAt 创建时间
+        type: integer
+      CreateBy:
+        description: |-
+          @inject_tag: db:"create_by"
+          CreateBy 创建人
+        type: integer
+      Creator:
+        $ref: '#/definitions/imapigateway.UserInfo'
+      ForumID:
+        description: |-
+          ForumID 帖子ID
+          @inject_tag: db:"forum_id"
+        type: integer
+      ForumUID:
+        description: |-
+          ForumUID帖子拥有者Id
+          @inject_tag: db:"forum_uid"
+        type: integer
+      ID:
+        description: '@inject_tag: db:"id"'
+        type: integer
+      ThumbID:
+        description: |-
+          ThumbID点赞Id
+          @inject_tag: db:"thumb_id"
+        type: integer
+      UpDown:
+        description: |-
+          UpDown 1点赞2踩
+          @inject_tag: db:"up_down"
+        type: integer
+    type: object
+  moment.UserIgnore:
+    properties:
+      CreateAt:
+        description: |-
+          CreateAt 创建时间
+          @inject_tag: db:"create_at"
+        type: integer
+      CreateBy:
+        description: |-
+          CreateBy 创建人
+          @inject_tag: db:"create_by"
+        type: integer
+      ID:
+        description: |-
+          ID 主键
+          @inject_tag: db:"id"
+        type: integer
+      IgnoreID:
+        description: |-
+          UserIgnoreID id
+          @inject_tag: db:"ignore_id"
+        type: integer
+      Look:
+        description: '@inject_tag: db:"look"'
+        type: integer
+      UserID:
+        description: |-
+          UserID 朋友
+          @inject_tag: db:"user_id"
+        type: integer
+    type: object
+  moment.UserStatus:
+    properties:
+      CreateAt:
+        description: |-
+          CreateAt 创建时间
+          @inject_tag: db:"create_at"
+        type: integer
+      FansCount:
+        description: |-
+          FansCount 粉丝数
+          @inject_tag: db:"fans_count"
+        type: integer
+      FollowCount:
+        description: |-
+          FollowCount 关注数
+          @inject_tag: db:"follow_count"
+        type: integer
+      FollowUID:
+        type: integer
+      FollowVersion:
+        description: |-
+          Version 版本号
+          @inject_tag: db:"follow_version"
+        type: integer
+      FollowVersionRead:
+        description: |-
+          Version 版本号
+          @inject_tag: db:"follow_version_read"
+        type: integer
+      ForumCount:
+        description: |-
+          ForumCount 发帖数
+          @inject_tag: db:"forum_count"
+        type: integer
+      FriendUID:
+        type: integer
+      FriendVersion:
+        description: |-
+          Version 版本号
+          @inject_tag: db:"friend_version"
+        type: integer
+      FriendVersionRead:
+        description: |-
+          Version 版本号
+          @inject_tag: db:"friend_version_read"
+        type: integer
+      HomeBackground:
+        description: |-
+          Version 背景图
+          @inject_tag: db:"home_background"
+        type: string
+      ID:
+        description: |-
+          ID 主键
+          @inject_tag: db:"id"
+        type: integer
+      IsFriend:
+        type: boolean
+      RecommendUID:
+        type: integer
+      RecommendVersion:
+        description: RecommendVersion 推荐版本号
+        type: integer
+      RecommendVersionRead:
+        description: |-
+          Version 版本号
+          @inject_tag: db:"recommend_version_read"
+        type: integer
+      ThumbCount:
+        description: |-
+          ThumbCount 点赞数
+          @inject_tag: db:"thumb_count"
+        type: integer
+      UpdateAt:
+        description: |-
+          CreateAt 创建时间
+          @inject_tag: db:"update_at"
+        type: integer
+      User:
+        $ref: '#/definitions/imapigateway.UserInfo'
+      UserID:
+        description: |-
+          UserID 用户
+          @inject_tag: db:"user_id"
+        type: integer
+    type: object
+  moment.UserTag:
+    properties:
+      CreateAt:
+        description: |-
+          CreateAt 创建时间
+          @inject_tag: db:"create_at"
+        type: integer
+      CreateBy:
+        description: |-
+          CreateBy 创建人
+          @inject_tag: db:"create_by"
+        type: integer
+      ID:
+        description: |-
+          ID 主键
+          @inject_tag: db:"id"
+        type: integer
+      TagID:
+        description: |-
+          ForumID 帖子ID
+          @inject_tag: db:"forum_id"
+          int32 ForumID  =3;
+          TagID 标签ID
+          @inject_tag: db:"tag_id"
+        type: integer
+      UserID:
+        description: |-
+          UserID 用户(*此字段必传)
+          @inject_tag: db:"user_id"
+        type: integer
+      UserTagID:
+        description: |-
+          UserTagID 用户标签ID
+          @inject_tag: db:"user_tag_id"
+        type: integer
+    type: object
+  pkg.ResponseMessage:
+    properties:
+      code:
+        type: string
+      data:
+        type: object
+      message:
+        type: string
+      state:
+        type: integer
+    type: object
+  svc.ForumYellow:
+    properties:
+      forumID:
+        type: integer
+      indexs:
+        items:
+          type: integer
+        type: array
+      type:
+        type: integer
+      userID:
+        type: integer
+    type: object
+info:
+  contact: {}
+paths:
+  /basesvc/ignore/add:
+    post:
+      consumes:
+      - application/json
+      description: 只传 [UserIgnore.UserID、UserIgnore.Look] Look 1不让他看 2不看他的
+      parameters:
+      - description: 'json '
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/moment.IgnoreSlice'
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+      summary: 新增忽略
+      tags:
+      - 忽略
+  /basesvc/ignore/check:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 朋友ID
+        in: query
+        name: UserID
+        required: true
+        type: integer
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+      summary: 获取用户忽略设置
+      tags:
+      - 忽略
+  /basesvc/ignore/delete:
+    post:
+      consumes:
+      - application/json
+      description: 只传 [UserIgnore.UserID、UserIgnore.Look] Look 1不让他看 2不看他的
+      parameters:
+      - description: 'json '
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/moment.IgnoreSlice'
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+      summary: 删除忽略
+      tags:
+      - 忽略
+  /basesvc/ignore/get:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 朋友ID
+        in: query
+        name: UserID
+        required: true
+        type: integer
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+      summary: 获取忽略
+      tags:
+      - 忽略
+  /basesvc/tag/add:
+    post:
+      consumes:
+      - application/json
+      description: 只传 Tag.TagName 和 UserTag.UserID
+      parameters:
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: 'json '
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/moment.TagAddReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+      summary: 新增标签
+      tags:
+      - 标签
+  /basesvc/tag/get:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+      summary: 获取标签
+      tags:
+      - 标签
+  /basesvc/token/check:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+      summary: 检查token
+      tags:
+      - 基础服务
+  /basesvc/token/get:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: user-id
+        in: header
+        name: user-id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 获取token
+      tags:
+      - 基础服务
+  /basesvc/uploadurl:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 0为大陆 1为国外
+        in: query
+        name: Location
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+      summary: 获取上传URL
+      tags:
+      - 基础服务
+  /basesvc/user/album:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 朋友ID
+        in: query
+        name: FriendID
+        type: integer
+      - description: 帖子ID
+        in: query
+        name: ForumID
+        type: integer
+      - description: 限制条数
+        in: query
+        name: Limit
+        type: integer
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+      summary: 用户相册
+      tags:
+      - 用户
+  /basesvc/user/homebg:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+      summary: 用户背景图
+      tags:
+      - 用户
+    post:
+      consumes:
+      - application/json
+      description: 只传 HomeBackground
+      parameters:
+      - description: 'json '
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/moment.UserStatus'
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+      summary: 用户朋友圈首页背景设置
+      tags:
+      - 用户
+  /basesvc/user/statistics:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: 朋友ID
+        in: query
+        name: UserID
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+      summary: 用户统计
+      tags:
+      - 用户
+  /basesvc/user/version:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/pkg.ResponseMessage'
+      summary: 用户版本
+      tags:
+      - 用户
+  /commentsvc/add:
+    post:
+      consumes:
+      - application/json
+      description: SupID、SupUser、 ReplayID、ReplayUID、Content 必传,评论帖子ReplayID=ForumID,有媒体需要传Medias
+      parameters:
+      - description: 'json '
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/moment.Comment'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 新增评论
+      tags:
+      - 评论
+  /commentsvc/delete:
+    post:
+      consumes:
+      - application/json
+      description: CommentID、ForumID、ForumUser 必传
+      parameters:
+      - description: 'json '
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/moment.Comment'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 删除评论
+      tags:
+      - 评论
+  /commentsvc/page:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 帖子ID
+        in: query
+        name: ForumID
+        type: integer
+      - description: 帖子创建用户此字段必传
+        in: query
+        name: ForumUser
+        type: integer
+      - description: 最后浏览帖子ID
+        in: query
+        name: CommentID
+        type: integer
+      - description: 分页
+        in: query
+        name: Limit
+        required: true
+        type: integer
+      - description: 回复条数
+        in: query
+        name: ReplayLimit
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 获取评论
+      tags:
+      - 评论
+  /commentsvc/replaypage:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 帖子ID
+        in: query
+        name: ForumID
+        type: integer
+      - description: 最后浏览帖子ID
+        in: query
+        name: CommentID
+        type: integer
+      - description: 分页
+        in: query
+        name: Limit
+        required: true
+        type: integer
+      - description: 评论ID
+        in: query
+        name: SupID
+        required: true
+        type: integer
+      - description: 一级评论人ID
+        in: query
+        name: SupUID
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 获取回复
+      tags:
+      - 评论
+  /followsvc/add:
+    post:
+      consumes:
+      - application/json
+      description: 只传 FollowUID
+      parameters:
+      - description: 'json '
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/moment.Follow'
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 新增关注
+      tags:
+      - 关注
+  /followsvc/check:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 被关注人ID
+        in: query
+        name: FollowUID
+        required: true
+        type: integer
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 检查是否关注
+      tags:
+      - 关注
+  /followsvc/delete:
+    post:
+      consumes:
+      - application/json
+      description: |-
+        只传 FollowUID
+        只传 FollowUID
+      parameters:
+      - description: 'json '
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/moment.Follow'
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 取消关注
+      tags:
+      - 关注
+  /followsvc/fans:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 偏移量
+        in: query
+        name: Offset
+        type: integer
+      - description: 分页大小
+        in: query
+        name: Limit
+        type: integer
+      - description: 用户昵称
+        in: query
+        name: UserName
+        type: string
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 我的粉丝
+      tags:
+      - 关注
+  /followsvc/fanscount:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 我的粉丝数量
+      tags:
+      - 关注
+  /followsvc/get:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 被关注人ID
+        in: query
+        name: FollowUID
+        required: true
+        type: integer
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 获取关注
+      tags:
+      - 关注
+  /followsvc/me:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 偏移量
+        in: query
+        name: Offset
+        type: integer
+      - description: 分页大小
+        in: query
+        name: Limit
+        type: integer
+      - description: 用户昵称
+        in: query
+        name: UserName
+        type: string
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 我关注的
+      tags:
+      - 关注
+  /followsvc/mecount:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 我关注人的数量
+      tags:
+      - 关注
+  /forumservice/recognize:
+    post:
+      consumes:
+      - application/json
+      description: 只传 ForumID 、Index 是指图片第几张是黄图暂时没用
+      parameters:
+      - description: 'json '
+        in: body
+        name: body
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/svc.ForumYellow'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 涉黄帖子
+      tags:
+      - 帖子
+  /forumsvc/add:
+    post:
+      consumes:
+      - application/json
+      description: |-
+        Content、如有媒体需要传Medias、如有提及需要Mention 内容为userid的json数组"[1]" 如果内容有@则需要传Entitys里面的UserID、UserName、AccessHash
+        如果选择话题需要传Topic 为[{"TopicID": 10,"TopicName": "皇马俱乐部"}]
+        "Permission": 权限1公开2私密3朋友4粉丝5指定部分可见6不给谁看，5和6需要传 "PermissionUser": "[UserID,]",
+      parameters:
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: 'json '
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/moment.ForumFriend'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 新增帖子
+      tags:
+      - 帖子
+  /forumsvc/delete:
+    post:
+      consumes:
+      - application/json
+      description: 只传 ForumID
+      parameters:
+      - description: 'json '
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/moment.ForumFriend'
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 删除帖子
+      tags:
+      - 帖子
+  /forumsvc/follow:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 查询条数
+        in: query
+        name: Limit
+        required: true
+        type: integer
+      - description: 上次浏览ID
+        in: query
+        name: ForumID
+        required: true
+        type: integer
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 所有关注人帖子
+      tags:
+      - 帖子
+  /forumsvc/friend:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 查询条数
+        in: query
+        name: Limit
+        required: true
+        type: integer
+      - description: 上次浏览ID
+        in: query
+        name: ForumID
+        required: true
+        type: integer
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 朋友帖子
+      tags:
+      - 帖子
+  /forumsvc/get:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 帖子ID
+        in: query
+        name: ForumID
+        required: true
+        type: integer
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 获取单个帖子
+      tags:
+      - 帖子
+  /forumsvc/ignore:
+    post:
+      consumes:
+      - application/json
+      description: 只传 ForumID
+      parameters:
+      - description: 'json '
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/moment.ForumIgnore'
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 忽略帖子
+      tags:
+      - 帖子
+  /forumsvc/othermain:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 查询条数
+        in: query
+        name: Limit
+        required: true
+        type: integer
+      - description: 上次浏览ID 取返回LastForumID
+        in: query
+        name: ForumID
+        required: true
+        type: integer
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: 朋友ID
+        in: query
+        name: FriendID
+        type: integer
+      - description: 查询轮次
+        in: query
+        name: RoundNum
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 他人主页帖子
+      tags:
+      - 帖子
+  /forumsvc/recommend:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 查询条数
+        in: query
+        name: Limit
+        required: true
+        type: integer
+      - description: 上次浏览ID
+        in: query
+        name: ForumID
+        required: true
+        type: integer
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 推荐帖子
+      tags:
+      - 帖子
+  /forumsvc/selfmain:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 查询条数
+        in: query
+        name: Limit
+        required: true
+        type: integer
+      - description: 上次浏览ID
+        in: query
+        name: ForumID
+        required: true
+        type: integer
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      tags:
+      - 帖子
+  /forumsvc/topic:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 查询条数
+        in: query
+        name: Limit
+        required: true
+        type: integer
+      - description: 上次浏览ID
+        in: query
+        name: ForumID
+        required: true
+        type: integer
+      - description: 话题ID
+        in: query
+        name: TopicID
+        required: true
+        type: integer
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 话题帖子
+      tags:
+      - 帖子
+  /mediasvc/download/{name}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 文件名称
+        in: path
+        name: name
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 下载
+      tags:
+      - 媒体
+  /mediasvc/upload:
+    post:
+      consumes:
+      - multipart/form-data
+      - application/json
+      parameters:
+      - description: file
+        in: formData
+        name: file
+        required: true
+        type: file
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 文件上传
+      tags:
+      - 媒体
+  /thumbsvc/add:
+    post:
+      consumes:
+      - application/json
+      description: 传参 ForumID、ForumUID、UpDown(1赞2踩) 如果是点赞的评论或回复 需要传 CommentID、CommentUID
+      parameters:
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: 'json '
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/moment.Thumb'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 新增点赞
+      tags:
+      - 点赞
+  /thumbsvc/delete:
+    post:
+      consumes:
+      - application/json
+      description: 传参 ThumbID、ForumID、ForumUID 如果是去掉评论的点赞 需要传 CommentID、CommentUID
+      parameters:
+      - description: 'json '
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/moment.Thumb'
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 删除点赞
+      tags:
+      - 点赞
+  /thumbsvc/page:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 最后浏览点赞编号
+        in: query
+        name: ThumbID
+        required: true
+        type: integer
+      - description: 帖子ID
+        in: query
+        name: ForumID
+        required: true
+        type: integer
+      - description: 分页
+        in: query
+        name: Limit
+        required: true
+        type: integer
+      - description: 1点赞2踩,目前只有点赞
+        in: query
+        name: UpDown
+        required: true
+        type: integer
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 获取点赞
+      tags:
+      - 点赞
+  /thumbsvc/usercount:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 用户ID
+        in: query
+        name: UserID
+        required: true
+        type: integer
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 获取用户被点赞数量
+      tags:
+      - 点赞
+  /tokensvc/check:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 检查token
+      tags:
+      - Token服务
+  /tokensvc/get:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: user-id
+        in: header
+        name: user-id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 获取token
+      tags:
+      - Token服务
+  /topicsvc/page:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 话题名字
+        in: query
+        name: TopicName
+        type: string
+      - description: 最后浏览帖子ID
+        in: query
+        name: TopicID
+        type: integer
+      - description: 分页
+        in: query
+        name: Limit
+        required: true
+        type: integer
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 获取话题
+      tags:
+      - 话题
+  /topicsvc/type/all:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            description: |-
+              话题
+              @inject_tag: db:"topic"
+            items:
+              type: integer
+            type: array
+      summary: 获取话题类型
+      tags:
+      - 话题
+swagger: "2.0"

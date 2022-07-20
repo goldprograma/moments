@@ -1,0 +1,88 @@
+syntax = "proto3";
+package moment;
+//通知朋友圈消息 
+service TopicDBService {
+	rpc Add(Topic)returns(Topic){}; //新增单个
+	rpc Delete(Topic)returns(Topic){}; //删除单个
+	rpc Page(TopicPageReq)returns(TopicPageRep){}; //分页查询
+	rpc Types(TopicTypeReq)returns(TopicTypeRep){}; //类型查询
+}
+
+
+message TopicPageRep{
+	repeated Topic Topics = 1;
+}
+message TopicTypeReq{
+}
+
+message TopicTypeRep{
+	repeated TopicType TopicTypes = 1;
+}
+
+message TopicPageReq{
+	int64 TopicTypeID =1;
+	string TopicName    =2;
+	int64 TopicID      =3;
+	int64 Limit        =4;
+}
+
+
+message Topic{
+	// ID 主键
+	 // @inject_tag: db:"id"
+	 int64 ID = 1;
+	// TopicID ID
+	// @inject_tag: db:"topic_id"
+	int64 TopicID  =2;
+	// TopicName 话题
+	// @inject_tag: db:"topic_name" select:"like"
+	string TopicName  =3;
+	// TypeID 类型ID
+	// @inject_tag: db:"type_id"
+	int32 TypeID  =4;
+	// Tag 标签
+	// @inject_tag: db:"tag"
+	int32 Tag  = 5;
+	// Subtitle 副标题
+	// @inject_tag: db:"subtitle"
+	string Subtitle = 6;
+	// CreateAt 类型名称
+	// @inject_tag: db:"create_at"
+	int64 CreateAt =7;
+	// CreateBy 创建人
+	// @inject_tag: db:"create_by"
+	int32 CreateBy  =8;
+	// Status 状态
+	// @inject_tag: db:"status"
+	int32 Status  =9;
+}
+
+// TopicType ...
+message TopicType {
+	// ID 主键
+	 // @inject_tag: db:"id"
+	 int64 ID = 1;
+	// TopicTypeID ID
+	// @inject_tag: db:"topic_type_id"
+	int64 TopicTypeID =2;
+	// TopicTypeName 名称
+	// @inject_tag: db:"topic_type_name"
+	string TopicTypeName =3; 
+	// CreateAt 创建事件
+	// @inject_tag: db:"create_at"
+	int64 CreateAt  =4;
+	// CreateBy 创建人
+	// @inject_tag: db:"create_by"
+	int32 CreateBy  =5;
+	// Seq 排序
+	// @inject_tag: db:"seq"
+	int32 Seq  =6;
+	// Status 状态
+	// @inject_tag: db:"status"
+	int32 Status  =7;
+}
+
+
+
+
+

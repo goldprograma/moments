@@ -1,0 +1,19 @@
+syntax = "proto3";
+package infoserver;
+
+service ContactPushService {
+    //更新自己朋友的未读状态
+    rpc UpdateMoments(ReqUpdateMoments)returns(ResUpdateMoments){};
+}
+
+message ReqUpdateMoments {
+    repeated int32 userId = 1;  //被更新用户ID列表
+    int32 selfId = 2;           //发送用户id
+}
+
+
+message ResUpdateMoments{
+    int32 code = 1; //1为成功,-1为失败
+    string msg = 2; //返回描述
+}
+

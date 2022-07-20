@@ -1,0 +1,350 @@
+syntax = "proto3";
+package moment;
+
+import "media.proto";
+import "common.proto";
+
+//通知朋友圈消息 
+service BaseDBService {
+	rpc TagAdd(TagAddReq)returns(TagAddRep){};
+    rpc TagGet(TagGetReq)returns(TagGetRep){};
+    rpc UserIgnoreAdd(IgnoreSlice)returns(IgnoreNone){};
+    rpc UserIgnoreGet(UserIgnore)returns(IgnoreSlice){};
+    rpc UserIgnoreCheck(UserIgnore)returns(UserIgnoreCheckRep){};
+    rpc UserIgnoreDelete(IgnoreSlice)returns(IgnoreNone){};
+    rpc UserIgnoreMeGet(UserIgnore)returns(UserIgnoreMeGetResp){}; //获取设置不让我看的人ID
+    rpc UserVersionGet(UserStatus)returns(UserVersionGetRep){};
+    rpc UserVersionReadUpdate(UserStatus)returns(UserStatus){};//更新用户已读版本号
+    rpc UserVersionUpdate(UserVersionUpdateReq)returns(UserVersionUpdateRep){};//更新用户最新版本号
+    rpc UserAlbumFromCache(UserAlbumReq)returns(UserAlbumRep){};
+
+    rpc UserStatusUpdate(UserStatus)returns(UserStatus){};
+    rpc UserStatisticsGet(UserStatus)returns(UserStatus){};
+    rpc UserHomeBackgroudGet(UserStatus)returns(UserStatus){};
+    rpc UserRecommendGet(UserRecommend)returns(UserRecommend){};//是否是推荐号
+    rpc UserAllID(UserAllIDReq)returns(UserAllIDRep){};//所有开通朋友圈的人id
+    rpc UserIgnoresAll(UserIgnore)returns(UserIgnoresAllResp);//查询忽略我的和我忽略的
+
+    // rpc UserRecommendAdd(UserRecommend)returns(UserRecommend){};//新增推荐号
+    // rpc UserRecommendDelete(UserRecommend)returns(UserRecommend){};//删除推荐号
+    // rpc UserRecommendPage(UserRecommendPageReq)returns(UserRecommendPageRep){};//查询推荐号
+}
+
+
+
+message UserIgnoresAllResp{
+    repeated int32 UserIDs=1;
+}
+
+message UserIgnoreMeGetResp{
+    repeated int32 UserIDs=1;
+}
+
+service BaseService{
+    rpc UserAlbums(UserAlbumsReq)returns(UserAlbumsRep){};
+    rpc UserContactsSync(UserContactsSyncReq)returns(UserContactsSyncRep){};
+}
+
+message UserContactsSyncReq {
+    int32 Action  = 1;//通知类型 0 新增 1删除 2拉黑
+    int32 UserID =2;//用户
+    repeated int32 ContactID=3;// 变动联系人列表 例子 1,2,3,4,5
+}
+
+
+message UserContactsSyncRep{
+    int32 Code = 1; //1为成功,0为失败
+    string Msg = 2; //返回描述
+}
+
+
+message UserAlbumsReq{
+    int32 UserID = 1;
+    int32 FriendID = 2;
+  }
+  
+  
+  message UserAlbumsRep {
+    int32 Code = 1; //1为成功,0为失败
+    string Msg = 2; //返回描述
+    repeated Media Medias=3; 
+ }
+// message UserRecommendPageReq{
+//     UserRecommend UserRecommend = 1;
+//     Page Page = 2;
+// }
+
+// message UserRecommendPageRep{
+//     Page Page = 1;
+//     repeated UserRecommend Rows=2;
+// }
+
+message UserVersionGetRep{
+    bool RecommendState = 1; //推荐状态
+    int32 RecommendUID = 2; 
+    bool FriendState = 3; //推荐状态
+    int32 FriendUID = 4;//朋友ID
+    bool FollowState = 5; //推荐状态
+    int32 FollowUID = 6;
+}
+
+
+message UserVersionUpdateReq{
+    int32 UserID = 1;//用户
+    bool IsRecommedUser = 2; //是否推荐用户
+    int64 Version = 3;
+    repeated int32 Friend = 4; //更细版本号的用户
+    repeated int32 Fans = 5; //更细版本号的用户
+}
+message UserVersionUpdateRep{}
+
+message UserAllIDReq{
+    repeated int32 ExcludeUID = 1;
+}
+message UserAllIDRep{
+    repeated int32 UserIDs= 1;
+}
+
+message UserRecommendCheckRep{
+    bool Status  = 1;
+    int32 LimitVIP = 2;//最低评论等级
+}
+
+message UserIgnoreCheckRep{
+    bool Status  = 1;
+}
+
+
+
+message IgnoreSlice{
+    repeated UserIgnore Ignores = 1;
+}
+
+message IgnoreNone{
+    
+}
+
+message UserAlbumReq{
+    int32 UserID = 1;
+    int32 ForumID = 2;// 帖子ID
+    int32 FriendID = 3;
+    int64 Limit  = 4;
+}
+
+message UserAlbumRep{
+    repeated Media Medias=1;
+}
+
+
+message UserStatisticsReq{
+    int32 Vistor = 1;
+    int32 CreateBy = 2;
+}
+
+
+message UserStatisticsRep{
+    int64 Forum = 1;
+    int64 Follow = 2;
+    int64 Thumb = 3;
+    int64 Fans   = 4;
+}
+
+message UserIgnore{
+    // ID 主键
+    // @inject_tag: db:"id"
+    int32 ID =1;
+    // UserIgnoreID id
+    // @inject_tag: db:"ignore_id"
+    int64 IgnoreID =2;
+    // @inject_tag: db:"look"
+    int32 Look = 3; 
+    // UserID 朋友
+    // @inject_tag: db:"user_id"
+    int32 UserID  =4;
+    // CreateBy 创建人
+    // @inject_tag: db:"create_by"
+	int32 CreateBy =5;
+    // CreateAt 创建时间
+    // @inject_tag: db:"create_at"
+	int64 CreateAt =6;
+
+}
+
+
+message  UserStatus{
+
+    // ID 主键
+    // @inject_tag: db:"id"
+    int32 ID =1;
+    // UserID 用户
+    // @inject_tag: db:"user_id"
+	int32 UserID = 2;
+    // ForumCount 发帖数
+        // @inject_tag: db:"forum_count"
+	int64 ForumCount =3;
+     // FollowCount 关注数
+    // @inject_tag: db:"follow_count"
+	int64 FollowCount =4;
+     // ThumbCount 点赞数
+    // @inject_tag: db:"thumb_count"
+	int64 ThumbCount =5;
+     // FansCount 粉丝数
+    // @inject_tag: db:"fans_count"
+	int64 FansCount =6;
+         // Version 版本号
+    // @inject_tag: db:"friend_version"
+    int64 FriendVersion =7;
+         // Version 版本号
+    // @inject_tag: db:"follow_version"
+    int64 FollowVersion =8;
+    // Version 版本号
+    // @inject_tag: db:"recommend_version_read"
+    int64 RecommendVersionRead =9;
+         // Version 版本号
+    // @inject_tag: db:"friend_version_read"
+    int64 FriendVersionRead =10;
+             // Version 版本号
+    // @inject_tag: db:"follow_version_read"
+    int64 FollowVersionRead =11;
+             // Version 背景图
+    // @inject_tag: db:"home_background"
+	string HomeBackground =12;
+     // CreateAt 创建时间
+    // @inject_tag: db:"create_at"
+    int64 CreateAt  = 13;
+    // CreateAt 创建时间
+    // @inject_tag: db:"update_at"
+    int64 UpdateAt  = 14;
+    // RecommendVersion 推荐版本号
+    int64 RecommendVersion =15;
+    imapigateway.userInfo User= 16;
+    bool IsFriend = 17;
+    int32 RecommendUID = 18;
+    int32 FriendUID = 19;
+    int32  FollowUID = 20;
+}
+
+
+// UserRecommendVersion ...
+message UserRecommendVersion{
+    // ID 主键
+    // @inject_tag: db:"id"
+    int32 ID =1;
+    // Version 推荐版本号
+    // @inject_tag: db:"version"
+	string Version =2;
+}
+
+
+message TagAddReq{
+	Tag Tag = 1; //标签ID
+	repeated UserTag UserTags=2;//包含用户
+}
+
+message TagAddRep{
+	Tag Tag = 1; //标签ID
+}
+message UserTags{
+	Tag Tag = 1;
+	repeated UserTag TagUsers=2;
+}
+
+message TagGetReq{
+	int32 UserID = 1; //用户ID
+	
+}
+message TagGetRep{
+	repeated UserTags UserTags= 1;
+	// repeated imapigateway.userInfo  Users =2;
+}
+
+
+
+
+
+message Tag{
+    // ID 主键
+    // @inject_tag: db:"id"
+    int32 ID =1;
+    // TagID 标签ID
+    // @inject_tag: db:"tag_id"
+    int64 TagID =2;
+    // TagName 标签名称(*此字段必传)
+    // @inject_tag: db:"tag_name"
+    string TagName =3;
+    // CreateAt 创建时间
+    // @inject_tag: db:"create_at"
+    int64 CreateAt =4;
+    // CreateBy 创建人
+    // @inject_tag: db:"create_by"
+    int32 CreateBy  =5;
+}
+
+message UserTag{
+// ID 主键
+// @inject_tag: db:"id"
+int32 ID =1;
+// UserTagID 用户标签ID
+// @inject_tag: db:"user_tag_id"
+int64 UserTagID  =2;
+// ForumID 帖子ID
+// @inject_tag: db:"forum_id"
+// int32 ForumID  =3;
+// TagID 标签ID
+// @inject_tag: db:"tag_id"
+int64 TagID =3;
+// UserID 用户(*此字段必传)
+// @inject_tag: db:"user_id"
+int32 UserID =4;
+// CreateAt 创建时间
+// @inject_tag: db:"create_at"
+int64 CreateAt  =5;
+// CreateBy 创建人
+// @inject_tag: db:"create_by"
+int32 CreateBy  =6;
+}
+
+message UserRecommend{
+    // ID 主键
+    // @inject_tag: db:"id"
+    int32 ID =1;
+    // ForumType 帖子类型
+    // @inject_tag: db:"forum_type"
+    int64 ForumType  =2;
+    // UserID 用户(*此字段必传)
+    // @inject_tag: db:"user_id"
+    int32 UserID =4;
+    // CreateAt 创建时间
+    // @inject_tag: db:"create_at"
+    int64 CreateAt  =5;
+    // CreateBy 创建人
+    // @inject_tag: db:"create_by"
+    int32 CreateBy  =6;
+    // Mark 备注
+    // @inject_tag: db:"mark"
+    string Mark  =7;   
+    // Mark 最低评论等级
+    // @inject_tag: db:"limit_vip"     
+    int32 LimitVIP = 8;
+    }
+
+
+
+    message Page  {
+        // 总条数
+        int64  TotalRows =1;
+        // 总页数
+        int64 PageCount =2;
+        // 页数大小
+        int64  PageSize =3;
+        // 当前页
+        int64 CurrentPage =4;
+        // 偏移量
+        int64 Offset =5;
+        // 长度
+        int64 Limit =6;
+        // 排序字段
+        string Order =7;
+        // 排序方法 (AES,DESC)
+        string Sort =8;
+    }

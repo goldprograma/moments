@@ -1,0 +1,48 @@
+runmode = "dev" # dev  production
+serviceName="dbservice"
+#后端地址
+httpPort=8282
+grpcPort=8082
+pprofPort=8182
+# grpcPort=8280 #用户联系人变动通知接口
+
+#NodeId 集群ID
+#nodeID = 1
+
+[database]
+type="mysql"
+driverName="mysql"
+location = "Asia/Chongqing"
+maxOpenConns=50
+maxIdleConns=10  #  10% <  max_idle_conns/max_open_conns  <80%
+maxLifetime = 1800 #单位S
+    [[database.node]]  #主数据库
+        server = "192.168.1.126"
+        port="3306"
+        sid="im_moments"
+        userName="root"
+        password="sixxiongda100!@#"
+#日志
+ [logs]
+filePath="./" #文件目录 结尾带/
+level=-1  #日志等级 	-1 debug  ~  5 fatal
+# [dblink]
+# mysqlr = "mysql_r_enpri001"
+# mysqlw = "mysql_w_enpri001"
+# schema = "im_moments"
+# redis="redis_enpri001"
+# etcd= "etcd_enpri001"
+
+[dblink]
+mysqlr = "ibi_rmoments"
+mysqlw = "ibi_wmoments"
+schema = "im_moments"
+redis="ibi_moments"
+etcd= "pt_etcd"
+
+#彩聊机器人
+[robot]
+endpoint = "http://106.75.154.34:15423"
+token ="1300002019:3Xh4MKR0dt6bfwoWBY6cbM24"
+roomType = 3 #1 是用户 3是群
+roomID = 1400269991 # 用ID 或者群ID

@@ -1,0 +1,85 @@
+syntax = "proto3";
+package moment;
+
+import "common.proto";
+option go_package = ".;moment";
+//通知朋友圈消息 
+service ThumbDBService {
+	rpc Add(Thumb)returns(Thumb){}; //新增单个
+	rpc HasClick(Thumb)returns(HasClickResp){}; //检车用户是否点赞
+	rpc Delete(Thumb)returns(Thumb){}; //删除单个
+	rpc Page(ThumbPageReq)returns(ThumbPageRep){}; //分页查询
+	rpc UserCount(ThumbUserCountReq)returns(ThumbUserCountRep){}; //用户点赞计数
+	rpc UserID(ThumbPageReq)returns(ThumbUserIDResp){}; //点赞用户ID
+	rpc GetForumCount(ThumbPageReq)returns(GetThumbCountResp){};//查询帖子、评论点赞数量
+	rpc GetCommentCount(ThumbPageReq)returns(GetThumbCountResp){};//查询帖子、评论点赞数量
+	
+}
+
+
+message HasClickResp{
+	bool State = 1;
+}
+
+message GetThumbCountResp{
+	int64 Count = 1;
+}
+
+message ThumbUserIDResp{
+	repeated int32 UserID=1;
+}
+
+message ThumbUserCountReq{
+	int64 UserID = 1;//用户号
+}
+
+message ThumbUserCountRep{
+	// @inject_tag: json:"Count"
+	int64 Count = 1;//用户号
+}
+
+message ThumbPageRep{
+	repeated Thumb Thumbs = 1;
+	repeated imapigateway.userInfo UserInfo =2;
+}
+
+message ThumbPageReq{
+	int64 ForumID = 1;
+	int64 CommentID = 2;
+	int32 Limit = 3; 
+	int32 UpDown = 4;
+	int64 ThumbID = 5;
+	int32 CreateBy =6;
+	repeated int32 Friends = 7;
+}
+
+
+message  Thumb  {
+	 // @inject_tag: db:"id"
+	int64 ID = 1;
+	// ThumbID点赞Id
+	// @inject_tag: db:"thumb_id"
+	int64 ThumbID =2;
+		// ForumID 帖子ID
+	// @inject_tag: db:"forum_id"
+	int64 ForumID  =3;
+	// ForumUID帖子拥有者Id
+	// @inject_tag: db:"forum_uid"
+	int32 ForumUID  =4;
+	// ForumID 帖子ID
+	// @inject_tag: db:"comment_id"
+	int64 CommentID  =5;
+	// ForumUID帖子拥有者Id
+	// @inject_tag: db:"comment_uid"
+	int32 CommentUID  =6;
+	// UpDown 1点赞2踩
+	// @inject_tag: db:"up_down"
+	int32 UpDown =7;
+	// @inject_tag: db:"create_at"
+	// CreateAt 创建时间
+	int64 CreateAt  =8;
+	// @inject_tag: db:"create_by"
+	// CreateBy 创建人
+	int32 CreateBy  =9;
+	imapigateway.userInfo Creator= 10;
+}

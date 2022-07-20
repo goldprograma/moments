@@ -1,0 +1,7 @@
+tokensvc
+tokensvc.exe
+tokensvc.log
+go.sum
+_build/
+test/
+.vscode/

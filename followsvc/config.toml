@@ -1,0 +1,24 @@
+runmode = "dev" # dev  production
+serviceName="followsvc"
+#后端地址
+httpPort=8083
+grpcPort =8183
+pprofPort=8283
+[depends]
+  dbService = "http://127.0.0.1:8383/momentdb"
+
+[grpcdepends]
+  imapigatewayserver = "192.200.1.199:18999"
+  momentdb = "127.0.0.1:8082"
+
+
+ [logs]
+filePath="./" #文件目录 结尾带/
+level=-1  #日志等级 	-1 debug  ~  5 fatal
+
+#彩聊机器人
+[robot]
+endpoint = "http://106.75.154.34:15423"
+token ="1300002019:3Xh4MKR0dt6bfwoWBY6cbM24"
+roomType = 3 #1 是用户 3是群
+roomID = 1400269991 # 用ID 或者群ID

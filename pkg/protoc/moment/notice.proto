@@ -1,0 +1,83 @@
+syntax = "proto3";
+package moment;
+//通知朋友圈消息 
+service NoticeDBService {
+	rpc Add(Notice)returns(Notice){}; //新增单个
+	rpc AddBatch(NoticeAddBatchReq)returns(None){}; //新增批量
+	rpc Delete(Notice)returns(Notice){}; //删除单个
+	rpc Page(NoticePageReq)returns(NoticePageRep){}; //分页查询
+	rpc Get(Notice)returns(Notice){}; //查询单个
+}
+
+message None{
+}
+
+message UnReadCountRep{
+	int32 Notifier = 1;
+}
+
+message NoticeAddBatchReq{
+	repeated Notice Notices = 1;
+}
+
+message NoticePageRep{
+	repeated Notice Notices = 1;
+}
+
+message NoticePageReq{
+	// int64 RelationID = 1;
+	int64 NoticeID = 1;
+	int32 Limit = 2; 
+	bool HasRead = 3; //是否已读
+	int32 Notifier = 4;
+}
+
+//1点赞 2评论 3 关注 4 @ 5 提及
+enum NoticeType {
+	Unknow_Type = 0 ;
+	Thumb_Type = 1;
+	Comment_Type = 2;
+	Follow_Type = 3;
+	At_Type = 4;
+	Mention_Type = 5;
+  }
+
+message Notice {
+	 // @inject_tag: db:"id"
+	 int64 ID = 1;
+	// NoticeID 通知消息ID
+	// @inject_tag: db:"notice_id"
+	int64 NoticeID  =2;
+	// Type 1点赞 2评论
+	// @inject_tag: db:"type"
+	NoticeType Type =3;
+	// RelationID 帖子id
+	// @inject_tag: db:"relation_id"
+	int64 RelationID  =4;
+	// Notifier 通知人
+	// @inject_tag: db:"notifier"
+	int32 Notifier  =5;
+	// Status 1为已读
+	// @inject_tag: db:"status"
+	int32 Status =6;
+	// CreateAt 通知时间
+	// @inject_tag: db:"create_at"
+	int64 CreateAt = 7;
+	// CreateBy 通知创建人
+	// @inject_tag: db:"create_by"
+	int32 CreateBy =8;
+	NoticeContent Content  =9;
+}
+
+message  NoticeContent{
+	//@inject_tag: db:"comment_id"
+	int64	CommentID   =1;  
+	//@inject_tag: db:"comment_content"
+	string CommentContent  =2;
+	//@inject_tag: db:"forum_id"
+	int64 ForumID  =3;
+	//@inject_tag: db:"forum_content"
+	string ForumContent  =4;
+	//@inject_tag: db:"media_content"
+	string MediaContent =5;
+}

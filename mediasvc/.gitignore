@@ -1,0 +1,6 @@
+mediasvc
+mediasvc.exe
+mediasvc.log
+go.sum
+_build/
+.vscode/

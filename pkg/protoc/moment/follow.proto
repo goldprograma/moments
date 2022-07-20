@@ -1,0 +1,113 @@
+syntax = "proto3";
+package moment;
+import "common.proto";
+
+//通知朋友圈消息 
+service FollowDBService {
+	rpc Add(Follow)returns(Follow){}; //新增单个
+	rpc Get(Follow)returns(Follow){}; //获取关注
+	rpc Delete(Follow)returns(Follow){}; //删除单个
+	rpc Follows(FollowPageReq)returns(FollowPageRep){}; //我关注的
+	rpc Fans(FollowPageReq)returns(FollowPageRep){}; //关注我的
+	rpc FansAll(FollowPageReq)returns(FollowPageRep){}; //关注我的
+	rpc FollowCount(FollowCountReq)returns(FollowCountRep){}; //我关注的数量
+	rpc FansCount(FollowCountReq)returns(FollowCountRep){}; //关注我的数量
+	rpc FansAllID(Follow)returns(FansAllIDRep){}; //我的粉丝
+	rpc FollowAllID(Follow)returns(FollowAllIDRep){}; //我的所有关注
+	rpc FollowAll(FollowPageReq)returns(FollowPageRep){}; //我的所有关注
+	rpc FansCountBySourceInternal(Follow)returns(FansCountBySourceResp){}; //粉丝数量
+	rpc FansIDInternal(FansIDReq)returns(FansIDResp){}; //分页查询粉丝ID
+	rpc FollowAllOrderByCreateAt(FollowAllOrderByCreateAtReq)returns (FollowAllOrderByCreateAtResp) {};
+}
+
+
+
+
+service FollowService{
+	rpc Add(Follow)returns(Follow){}; //新增单个
+	rpc Delete(Follow)returns(Follow){}; //删除单个
+	rpc FansCountBySource(Follow)returns(FansCountBySourceResp){}; //粉丝数量
+	rpc Get(Follow)returns(Follow){}; //获取关注
+	rpc FansID(FansIDReq)returns(FansIDResp){}; //关注我的
+	rpc Fans(FollowPageReq)returns(FollowPageRep){}; //关注我的
+	rpc Follows(FollowPageReq)returns(FollowPageRep){}; //我关注的
+	rpc FansCount(FollowCountReq)returns(FollowCountRep){}; //关注我的数量
+}
+
+
+message FollowAllOrderByCreateAtReq{
+	int32 CreateAt = 1;
+	int32 UserID = 2;
+	int32 Limit = 3;
+}
+message FollowAllOrderByCreateAtResp{
+	repeated Follow Follows = 1;
+}
+
+
+message FollowPageRep{
+	repeated Follow Follows = 1;
+	repeated imapigateway.userInfo Users = 2;
+}
+
+message FansIDReq{
+	int32 UserID = 1; 
+	string UserName = 2; 
+	int32 Offset = 3;
+	int32 Limit = 4;	
+}
+
+message FansIDResp{
+    repeated int32 UID = 1;
+}
+
+message FansCountBySourceResp{
+	int32 Count = 1;
+}
+
+message FollowAllIDRep{
+	repeated int32 Fans  = 1;
+}
+
+message FansAllIDRep{
+	repeated int32 Fans  = 1;
+}
+
+message FollowCountReq{
+	int32 UserID = 1; 
+}
+
+message FollowCountRep{
+	// @inject_tag: json:"Count"
+	int64 Count = 1; 
+}
+
+message FollowPageReq{
+	string UserName = 1; 
+	int32 CreateBy = 2;
+	int32 Offset = 3;
+	int32 Limit = 4;	
+}
+
+
+message  Follow  {
+	 // @inject_tag: db:"id"
+	int64 ID = 1;
+	// @inject_tag: db:"follow_id"
+	int64 FollowID =2;
+	// FollowUID 被关注人ID
+	// @inject_tag: db:"follow_uid"
+	int32 FollowUID  =3;
+	//EachOther 是否互相关注
+	// @inject_tag: db:"each_other" update:"force"
+	int32  EachOther = 4;
+	// CreateAt 关注时间
+	// @inject_tag: db:"create_at"
+	int64 CreateAt =5;
+	// UserID 用户ID
+	// @inject_tag: db:"create_by"
+	int32 CreateBy  =6;
+	// FollowSource 关注来源 给直播使用 暂不开启
+	// @inject_tag: db:"follow_source"
+	int64 FollowSource  =7; 
+}

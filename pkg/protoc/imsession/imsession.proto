@@ -1,0 +1,522 @@
+syntax = "proto3";
+
+package imsession;
+
+
+//Session service 接口
+service imsession {
+    //！！！清除keyId的操作
+    rpc ClearKeyIdSession (ClearKeyIdSessionReq) returns (ClearKeyIdSessionResp) {
+    }
+
+    //1初始化连接添加session
+    rpc SessionInitConnection (SessionInitConnectionReq) returns (SessionInitConnectionResult) {
+    }
+
+    //2注册设备信息
+    rpc SessionUpdateRegisterDevice (SessionUpdateRegisterDeviceReq) returns (SessionUpdateRegisterDeviceResult) {
+    }
+    //2注册设备信息
+    rpc SessionUpdateRegisterHuaweiDevice (SessionUpdateRegisterHuaweiDeviceReq) returns (SessionUpdateRegisterHuaweiDeviceResult) {
+    }
+
+    //3更新手机号码
+    rpc SessionUpdateUserPhone (SessionUpdateUserPhoneReq) returns (SessionUpdateUserPhoneResult) {
+    }
+
+    //4logout 调用
+    rpc SessionUpdateLogout (SessionUpdateLogoutReq) returns (SessionUpdateLogoutResult) {
+    }
+
+    //5客户端握手完成时保存auth key
+    rpc SessionUpdateOnHandshakeDone (SessionUpdateOnHandshakeDoneReq) returns (SessionUpdateOnHandshakeDoneResult) {
+    }
+
+    //6剔除单个
+    rpc SessionTerminateByKeyId (SessionTerminateByKeyIdReq) returns (SessionTerminateByKeyIdResult) {
+    }
+
+    //7剔除多个
+    rpc SessionTerminateExceptKeyId (SessionTerminateExceptKeyIdReq) returns (SessionTerminateExceptKeyIdResult) {
+    }
+
+    //8根据keyid删除session
+    rpc SessionDeleteByKeyId (SessionDeleteByKeyIdReq) returns (SessionDeleteByKeyIdResult) {
+    }
+
+    //9更新qts
+    rpc SessionIncQts (SessionIncQtsReq) returns (SessionIncQtsResult) {
+    }
+
+    //10根据keyId查询session
+    rpc SessionQueryByKeyId (SessionQueryByKeyIdReq) returns (SessionQueryByKeyIdResult) {
+    }
+
+    //11根据UserId查询session
+    rpc SessionQueryByUserId (SessionQueryByUserIdReq) returns (SessionQueryByUserIdResult) {
+    }
+
+    //12根据KeyId查询session 的  BasicInfo
+    rpc SessionQueryBasicInfoByKeyId (SessionQueryBasicInfoByKeyIdReq) returns (SessionQueryBasicInfoByKeyIdResult) {
+    }
+
+    //13根据KeyId查询session描述信息
+    rpc SessionQueryDesByKeyId (SessionQueryDesByKeyIdReq) returns (SessionQueryDesByKeyIdResult) {
+    }
+
+    //14根据userId删除auth keys
+    rpc SessionDeleteAuthKeysByUserId (SessionDeleteAuthKeysByUserIdReq) returns (SessionDeleteAuthKeysByUserIdResult) {
+    }
+
+    //15更新ping
+    rpc SessionUpdatePing (SessionUpdatePingReq) returns (SessionUpdatePingResult) {
+    }
+    //15更新ping
+    rpc SessionUpdatePing2 (SessionUpdatePingReq2) returns (SessionUpdatePingResult) {
+    }
+
+    //16更新登陆
+    rpc SessionUpdateSignIn (SessionUpdateSignInReq) returns (SessionUpdateSignInResult) {
+    }
+
+    //17根据keyId获取apiID
+    rpc SessionQueryApiIDbyKeyId (SessionQueryApiIDbyKeyIdReq) returns (SessionQueryApiIDbyKeyIdResult) {
+    }
+
+    //18根据keyId查找userId
+    rpc SessionQueryUserIdByKeyId (SessionQueryUserIdByKeyIdReq) returns (SessionQueryUserIdByKeyIdResult) {
+    }
+
+    //19客户端连接断开
+    rpc SessionDisconnect (SessionDisconnectReq) returns (SessionDisconnectResult) {
+    }
+
+    //20BanDevice:根据uniqueNumber设置禁止登陆的设备
+    rpc AddBanDevice (AddBanDeviceReq) returns (AddBanDeviceResult) {
+    }
+
+    //21BanDevice:根据uniqueNumber查询是否是禁止登陆的设备:true是false不是
+    rpc CheckBanDevice (CheckBanDeviceReq) returns (CheckBanDeviceResult) {
+    }
+
+    //22get unique number by key id
+    rpc GetUniqueNumberByKeyId (GetUniqueNumberByKeyIdReq) returns (GetUniqueNumberByKeyIdResult) {
+    }
+
+    //23设置langcode
+    rpc SetLangCode (SetLangCodeReq) returns (SetLangCodeResult) {
+    }
+
+    //24获取langCode
+    rpc GetLangCode (GetLangCodeReq) returns (GetLangCodeResult) {
+    }
+
+    //25根据keyId获取创建时间
+    rpc GetCreatedByKeyId (GetCreatedByKeyIdReq) returns (GetCreatedByKeyIdResult) {
+    }
+
+    //26更新app完整校验字段
+    rpc UpdateSelfAppHash (UpdateSelfAppHashReq) returns (UpdateSelfAppHashResult) {
+    }
+
+}
+
+message ClearKeyIdSessionReq {
+    int32 Uid = 1;
+    uint64 key_id = 2; //是否成功
+}
+
+message ClearKeyIdSessionResp {
+    bool sucess = 1;//是否成功
+}
+
+message SetLangCodeReq {
+    int64 key_id = 1;
+    string lang_code = 2; //语言code
+}
+message SetLangCodeResult {
+    ResultCode code = 1;
+    enum ResultCode {
+        Success = 0;
+        InternalError = 1;
+    }
+}
+message GetLangCodeReq {
+    int64 key_id = 1;
+}
+
+
+message GetLangCodeResult {
+    ResultCode code = 1;
+    string lang_code = 2; //语言code
+    enum ResultCode {
+        Success = 0;
+        InternalError = 1;
+    }
+}
+
+
+message GetUniqueNumberByKeyIdReq {
+    int64 key_id = 1;
+}
+message GetUniqueNumberByKeyIdResult {
+    string unique_number = 1;
+}
+
+message SessionDisconnectReq {
+    uint64 key_id = 1; // 端标识
+    string phone_number = 2; // 电话号码
+    bool disconnect = 3; // true断开连接，false新连接
+    string client_ip = 4; // 新连接ip
+    string country = 5; // ip地区
+}
+message SessionDisconnectResult {
+
+}
+
+message SessionInitConnectionReq {
+    int32 api_id = 1;
+    string device_model = 2;
+    string system_version = 3;
+    string app_version = 4;
+    string lang_code = 5;
+    string ip = 6;
+    string country = 7;
+    int32 layer = 8;
+    uint64 key_id = 9; // must set
+    string app_name = 10;
+}
+message SessionInitConnectionResult {
+    ResultCode code = 1;
+    enum ResultCode {
+        Success = 0;
+        InternalError = 1;
+    }
+}
+
+
+message SessionUpdateRegisterDeviceReq {
+    int32 push_token_type = 1;
+    string push_token = 2;
+    uint64 key_id = 3;
+    int32 call_token_type = 4;
+    string call_token = 5;
+}
+message SessionUpdateRegisterDeviceResult {
+    ResultCode code = 1;
+    enum ResultCode {
+        Success = 0;
+        InternalError = 1;
+    }
+}
+
+message SessionUpdateRegisterHuaweiDeviceReq {
+    int32 push_token_type = 1;
+    string push_token = 2;
+    uint64 key_id = 3;
+    int32 call_token_type = 4;
+    string call_token = 5;
+}
+message SessionUpdateRegisterHuaweiDeviceResult {
+    ResultCode code = 1;
+    int32 user_id = 2;
+    uint64 key_id = 3;
+    enum ResultCode {
+        Success = 0;
+        InternalError = 1;
+    }
+}
+
+message SessionUpdateUserPhoneReq {
+    int32 user_id = 1;
+    string new_phone = 2;
+}
+
+message SessionUpdateUserPhoneResult {
+    ResultCode code = 1;
+    enum ResultCode {
+        Success = 0;
+        InternalError = 1;
+    }
+}
+
+message SessionQueryApiIDbyKeyIdReq {
+    uint64 key_id = 1; // 客户端id
+}
+message SessionQueryApiIDbyKeyIdResult {
+    int32 api_id = 1; // 客户端类型标识
+    bool internal_error = 2; //是否发生了错误
+}
+
+message SessionQueryUserIdByKeyIdReq {
+    uint64 key_id = 1; // 客户端id
+}
+message SessionQueryUserIdByKeyIdResult {
+    bool internal_error = 1;
+    int32 user_id = 2;
+}
+
+message SessionUpdateOnHandshakeDoneReq {
+    uint64 key_id = 1;
+    bytes auth_key = 2;
+}
+message SessionUpdateOnHandshakeDoneResult {
+    bool success = 1; // 是否保存成功，保存失败infoserver查看失败信息
+    FailCode code = 2;
+    enum FailCode {
+        Internal = 0;
+        DuplicateKeyid = 1;
+    }
+}
+
+message SessionIncQtsReq {
+    uint64 key_id = 1;
+}
+message SessionIncQtsResult {
+    ResultCode code = 1;
+    int32 qts = 2;
+
+    enum ResultCode {
+        Success = 0;
+        InternalError = 1;
+    }
+}
+
+message SessionTerminateByKeyIdReq {
+    uint64 key_id = 1; // 要剔除的keyid
+    string phone_number = 2;
+    int32 user_id = 3;
+    uint64 current_key_id = 4; //踢人端的keyid
+}
+message SessionTerminateByKeyIdResult {
+    ResultCode code = 1;
+
+    enum ResultCode {
+        Success = 0;
+        InternalError = 1;
+    }
+}
+
+message SessionTerminateExceptKeyIdReq {
+    uint64 key_id = 1; // 要保留的keyid
+    string phone_number = 2;
+    int32 user_id = 3;
+}
+message SessionTerminateExceptKeyIdResult {
+    ResultCode code = 1;
+
+    enum ResultCode {
+        Success = 0;
+        InternalError = 1;
+    }
+}
+
+message SessionUpdateLogoutReq {
+    uint64 key_id = 1;
+    int32 user_id = 2;
+}
+message SessionUpdateLogoutResult {
+    ResultCode code = 1;
+
+    enum ResultCode {
+        Success = 0;
+        InternalError = 1;
+    }
+}
+
+message CheckBanDeviceReq {
+    uint64 key_id = 1;
+    string unique_number = 2;
+}
+message CheckBanDeviceResult {
+    bool Banned = 1;
+}
+
+message AddBanDeviceReq {
+    string unique_number = 1;
+}
+message AddBanDeviceResult {
+    ResultCode code = 1;
+
+    enum ResultCode {
+        Success = 0;
+        InternalError = 1;
+    }
+}
+
+message SessionDeleteByKeyIdReq {
+    uint64 key_id = 1;
+    int32 user_id = 2;
+}
+message SessionDeleteByKeyIdResult {
+    ResultCode code = 1;
+    enum ResultCode {
+        Success = 0;
+        InternalError = 1;
+    }
+}
+
+message SessionQueryByKeyIdReq {
+    uint64 key_id = 1;
+}
+message SessionQueryByKeyIdResult {
+    ResultCode code = 1;
+    SessionInformation info = 2; //session信息
+
+    enum ResultCode {
+        Success = 0;
+        InternalError = 1;
+    }
+}
+
+message SessionInformation {
+    int32 api_id = 1;
+    string device_model = 2;
+    string system_version = 3;
+    string app_version = 4;
+    string lang_code = 5;
+    string ip = 6;
+    string country = 7;
+    int32 layer = 8;
+    bytes auth_key = 9;
+    int32 qts = 10;
+    int32 push_token_type = 11;
+    string push_token = 12;
+    int32 call_token_type = 13;
+    string call_token = 14;
+    int64 ping_time = 15;
+    string phone_number = 16;
+    int32 user_id = 17;
+    int64 access_hash = 18;
+    int32 seq = 19;
+    uint64 key_id = 20;
+    string app_name = 21;
+    bool disconnect = 22; // 客户端是否已断开连接
+}
+
+message SessionUpdateSignInReq {
+    string phone_number = 1;
+    uint64 key_id = 2;
+    int32 user_id = 3;
+    int64 access_hash = 4;
+    bool is_privileged_version = 5;
+}
+message SessionUpdateSignInResult {
+    ResultCode code = 1;
+
+    enum ResultCode {
+        Success = 0;
+        InternalError = 1;
+    }
+}
+
+message SessionQueryByUserIdReq {
+    int32 user_id = 1;
+}
+message SessionQueryByUserIdResult {
+    ResultCode code = 1;
+    repeated SessionInformation infos = 2;
+
+    enum ResultCode {
+        Success = 0;
+        InternalError = 1;
+    }
+}
+message SessionQueryBasicInfoByKeyIdReq {
+    uint64 key_id = 1;
+}
+message SessionQueryBasicInfoByKeyIdResult {
+    ResultCode code = 1;
+    int32 user_id = 2;
+    string phone_number = 3;
+    string app_version = 4;
+    enum ResultCode {
+        Success = 0;
+        InternalError = 1;
+    }
+}
+
+message SessionQueryDesByKeyIdReq {
+    uint64 key_id = 1;
+}
+message SessionQueryDesByKeyIdResult {
+    ResultCode code = 1;
+    string device_model = 2;
+    string system_version = 3;
+    string app_version = 4;
+    enum ResultCode {
+        Success = 0;
+        InternalError = 1;
+    }
+}
+
+
+message SessionDeleteAuthKeysByUserIdReq {
+    int32 user_id = 1;
+}
+message SessionDeleteAuthKeysByUserIdResult {
+    ResultCode code = 1;
+    repeated int64 keyIds = 2;
+
+    enum ResultCode {
+        Success = 0;
+        InternalError = 1;
+    }
+}
+
+message SessionUpdatePingReq {
+    int32 user_id = 1;
+    uint64 key_id = 2;
+    int64 ping_time = 3;
+    bool update_time = 4;
+}
+message SessionUpdatePingReq2 {
+    int32 user_id = 1;
+    uint64 key_id = 2;
+    int64 ping_time = 3;
+    bool update_time = 4;
+}
+
+
+message SessionUpdatePingResult {
+    ResultCode code = 1;
+    int32 user_id = 2;
+    string phone = 3;
+
+    enum ResultCode {
+        Success = 0;
+        InternalError = 1;
+        AuthkeyUnregistered = 2; // session被踢
+    }
+}
+//25根据keyId获取创建时间
+message GetCreatedByKeyIdReq {
+    uint64 key_id = 1;
+}
+//25根据keyId获取创建时间
+message GetCreatedByKeyIdResult {
+    ResultCode code = 1;
+    int32 created = 2; //创建时间
+    enum ResultCode {
+        Success = 0;
+        InternalError = 1;
+    }
+}
+//26更新app完整校验字段
+message UpdateSelfAppHashReq {
+    uint64 key_id = 1;
+    string app_hash = 2; //完整校验hash
+}
+//26更新app完整校验字段
+message UpdateSelfAppHashResult {
+    ResultCode code = 1;
+    enum ResultCode {
+        Success = 0;
+        InternalError = 1;
+    }
+}
+
+
+
+
+

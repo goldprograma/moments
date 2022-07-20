@@ -1,0 +1,8 @@
+momentdb.log
+dbservice.log
+dbsvc
+dbsvc.exe
+go.sum
+.idea
+.vscode
+_build/

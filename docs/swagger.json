@@ -1,0 +1,3238 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/basesvc/ignore/add": {
+            "post": {
+                "description": "只传 [UserIgnore.UserID、UserIgnore.Look] Look 1不让他看 2不看他的",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "忽略"
+                ],
+                "summary": "新增忽略",
+                "parameters": [
+                    {
+                        "description": "json ",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/moment.IgnoreSlice"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/basesvc/ignore/check": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "忽略"
+                ],
+                "summary": "获取用户忽略设置",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "朋友ID",
+                        "name": "UserID",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/basesvc/ignore/delete": {
+            "post": {
+                "description": "只传 [UserIgnore.UserID、UserIgnore.Look] Look 1不让他看 2不看他的",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "忽略"
+                ],
+                "summary": "删除忽略",
+                "parameters": [
+                    {
+                        "description": "json ",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/moment.IgnoreSlice"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/basesvc/ignore/get": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "忽略"
+                ],
+                "summary": "获取忽略",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "朋友ID",
+                        "name": "UserID",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/basesvc/tag/add": {
+            "post": {
+                "description": "只传 Tag.TagName 和 UserTag.UserID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "标签"
+                ],
+                "summary": "新增标签",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "json ",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/moment.TagAddReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/basesvc/tag/get": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "标签"
+                ],
+                "summary": "获取标签",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/basesvc/token/check": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "基础服务"
+                ],
+                "summary": "检查token",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/basesvc/token/get": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "基础服务"
+                ],
+                "summary": "获取token",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "user-id",
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/basesvc/uploadurl": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "基础服务"
+                ],
+                "summary": "获取上传URL",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "0为大陆 1为国外",
+                        "name": "Location",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/basesvc/user/album": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户"
+                ],
+                "summary": "用户相册",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "朋友ID",
+                        "name": "FriendID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "帖子ID",
+                        "name": "ForumID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "限制条数",
+                        "name": "Limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/basesvc/user/homebg": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户"
+                ],
+                "summary": "用户背景图",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "只传 HomeBackground",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户"
+                ],
+                "summary": "用户朋友圈首页背景设置",
+                "parameters": [
+                    {
+                        "description": "json ",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/moment.UserStatus"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/basesvc/user/statistics": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户"
+                ],
+                "summary": "用户统计",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "朋友ID",
+                        "name": "UserID",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/basesvc/user/version": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户"
+                ],
+                "summary": "用户版本",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.ResponseMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/commentsvc/add": {
+            "post": {
+                "description": "SupID、SupUser、 ReplayID、ReplayUID、Content 必传,评论帖子ReplayID=ForumID,有媒体需要传Medias",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "评论"
+                ],
+                "summary": "新增评论",
+                "parameters": [
+                    {
+                        "description": "json ",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/moment.Comment"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/commentsvc/delete": {
+            "post": {
+                "description": "CommentID、ForumID、ForumUser 必传",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "评论"
+                ],
+                "summary": "删除评论",
+                "parameters": [
+                    {
+                        "description": "json ",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/moment.Comment"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/commentsvc/page": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "评论"
+                ],
+                "summary": "获取评论",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "帖子ID",
+                        "name": "ForumID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "帖子创建用户此字段必传",
+                        "name": "ForumUser",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "最后浏览帖子ID",
+                        "name": "CommentID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "分页",
+                        "name": "Limit",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "回复条数",
+                        "name": "ReplayLimit",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/commentsvc/replaypage": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "评论"
+                ],
+                "summary": "获取回复",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "帖子ID",
+                        "name": "ForumID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "最后浏览帖子ID",
+                        "name": "CommentID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "分页",
+                        "name": "Limit",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "评论ID",
+                        "name": "SupID",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "一级评论人ID",
+                        "name": "SupUID",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/followsvc/add": {
+            "post": {
+                "description": "只传 FollowUID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "关注"
+                ],
+                "summary": "新增关注",
+                "parameters": [
+                    {
+                        "description": "json ",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/moment.Follow"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/followsvc/check": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "关注"
+                ],
+                "summary": "检查是否关注",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "被关注人ID",
+                        "name": "FollowUID",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/followsvc/delete": {
+            "post": {
+                "description": "只传 FollowUID\n只传 FollowUID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "关注"
+                ],
+                "summary": "取消关注",
+                "parameters": [
+                    {
+                        "description": "json ",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/moment.Follow"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/followsvc/fans": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "关注"
+                ],
+                "summary": "我的粉丝",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "偏移量",
+                        "name": "Offset",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "分页大小",
+                        "name": "Limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "用户昵称",
+                        "name": "UserName",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/followsvc/fanscount": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "关注"
+                ],
+                "summary": "我的粉丝数量",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/followsvc/get": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "关注"
+                ],
+                "summary": "获取关注",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "被关注人ID",
+                        "name": "FollowUID",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/followsvc/me": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "关注"
+                ],
+                "summary": "我关注的",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "偏移量",
+                        "name": "Offset",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "分页大小",
+                        "name": "Limit",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "用户昵称",
+                        "name": "UserName",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/followsvc/mecount": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "关注"
+                ],
+                "summary": "我关注人的数量",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/forumservice/recognize": {
+            "post": {
+                "description": "只传 ForumID 、Index 是指图片第几张是黄图暂时没用",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "帖子"
+                ],
+                "summary": "涉黄帖子",
+                "parameters": [
+                    {
+                        "description": "json ",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/svc.ForumYellow"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/forumsvc/add": {
+            "post": {
+                "description": "Content、如有媒体需要传Medias、如有提及需要Mention 内容为userid的json数组\"[1]\" 如果内容有@则需要传Entitys里面的UserID、UserName、AccessHash\n如果选择话题需要传Topic 为[{\"TopicID\": 10,\"TopicName\": \"皇马俱乐部\"}]\n\"Permission\": 权限1公开2私密3朋友4粉丝5指定部分可见6不给谁看，5和6需要传 \"PermissionUser\": \"[UserID,]\",",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "帖子"
+                ],
+                "summary": "新增帖子",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "json ",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/moment.ForumFriend"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/forumsvc/delete": {
+            "post": {
+                "description": "只传 ForumID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "帖子"
+                ],
+                "summary": "删除帖子",
+                "parameters": [
+                    {
+                        "description": "json ",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/moment.ForumFriend"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/forumsvc/follow": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "帖子"
+                ],
+                "summary": "所有关注人帖子",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "查询条数",
+                        "name": "Limit",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "上次浏览ID",
+                        "name": "ForumID",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/forumsvc/friend": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "帖子"
+                ],
+                "summary": "朋友帖子",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "查询条数",
+                        "name": "Limit",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "上次浏览ID",
+                        "name": "ForumID",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/forumsvc/get": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "帖子"
+                ],
+                "summary": "获取单个帖子",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "帖子ID",
+                        "name": "ForumID",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/forumsvc/ignore": {
+            "post": {
+                "description": "只传 ForumID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "帖子"
+                ],
+                "summary": "忽略帖子",
+                "parameters": [
+                    {
+                        "description": "json ",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/moment.ForumIgnore"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/forumsvc/othermain": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "帖子"
+                ],
+                "summary": "他人主页帖子",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "查询条数",
+                        "name": "Limit",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "上次浏览ID 取返回LastForumID",
+                        "name": "ForumID",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "朋友ID",
+                        "name": "FriendID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "查询轮次",
+                        "name": "RoundNum",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/forumsvc/recommend": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "帖子"
+                ],
+                "summary": "推荐帖子",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "查询条数",
+                        "name": "Limit",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "上次浏览ID",
+                        "name": "ForumID",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/forumsvc/selfmain": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "帖子"
+                ],
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "查询条数",
+                        "name": "Limit",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "上次浏览ID",
+                        "name": "ForumID",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/forumsvc/topic": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "帖子"
+                ],
+                "summary": "话题帖子",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "查询条数",
+                        "name": "Limit",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "上次浏览ID",
+                        "name": "ForumID",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "话题ID",
+                        "name": "TopicID",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mediasvc/download/{name}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "媒体"
+                ],
+                "summary": "下载",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "文件名称",
+                        "name": "name",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mediasvc/upload": {
+            "post": {
+                "consumes": [
+                    "multipart/form-data",
+                    "application/json"
+                ],
+                "tags": [
+                    "媒体"
+                ],
+                "summary": "文件上传",
+                "parameters": [
+                    {
+                        "type": "file",
+                        "description": "file",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/thumbsvc/add": {
+            "post": {
+                "description": "传参 ForumID、ForumUID、UpDown(1赞2踩) 如果是点赞的评论或回复 需要传 CommentID、CommentUID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "点赞"
+                ],
+                "summary": "新增点赞",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "json ",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/moment.Thumb"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/thumbsvc/delete": {
+            "post": {
+                "description": "传参 ThumbID、ForumID、ForumUID 如果是去掉评论的点赞 需要传 CommentID、CommentUID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "点赞"
+                ],
+                "summary": "删除点赞",
+                "parameters": [
+                    {
+                        "description": "json ",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/moment.Thumb"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/thumbsvc/page": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "点赞"
+                ],
+                "summary": "获取点赞",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "最后浏览点赞编号",
+                        "name": "ThumbID",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "帖子ID",
+                        "name": "ForumID",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "分页",
+                        "name": "Limit",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "1点赞2踩,目前只有点赞",
+                        "name": "UpDown",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/thumbsvc/usercount": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "点赞"
+                ],
+                "summary": "获取用户被点赞数量",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "用户ID",
+                        "name": "UserID",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tokensvc/check": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Token服务"
+                ],
+                "summary": "检查token",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tokensvc/get": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Token服务"
+                ],
+                "summary": "获取token",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "user-id",
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/topicsvc/page": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "话题"
+                ],
+                "summary": "获取话题",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "话题名字",
+                        "name": "TopicName",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "最后浏览帖子ID",
+                        "name": "TopicID",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "分页",
+                        "name": "Limit",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/topicsvc/type/all": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "话题"
+                ],
+                "summary": "获取话题类型",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "description": "话题\n@inject_tag: db:\"topic\"",
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "imapigateway.UserInfo": {
+            "type": "object",
+            "properties": {
+                "about": {
+                    "type": "string"
+                },
+                "access_hash": {
+                    "type": "integer"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "birthday": {
+                    "type": "integer"
+                },
+                "bot": {
+                    "type": "boolean"
+                },
+                "bot_chat_history": {
+                    "type": "boolean"
+                },
+                "bot_info_version": {
+                    "type": "integer"
+                },
+                "bot_inline_geo": {
+                    "type": "boolean"
+                },
+                "bot_inline_placeholder": {
+                    "type": "string"
+                },
+                "bot_nochats": {
+                    "type": "boolean"
+                },
+                "cluster_region": {
+                    "type": "integer"
+                },
+                "contact": {
+                    "type": "boolean"
+                },
+                "country_code": {
+                    "type": "string"
+                },
+                "created": {
+                    "type": "integer"
+                },
+                "deleted": {
+                    "type": "boolean"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "font_rgb": {
+                    "type": "string"
+                },
+                "group_id": {
+                    "type": "integer"
+                },
+                "lang_code": {
+                    "type": "string"
+                },
+                "last_logout": {
+                    "type": "integer"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "local_phone": {
+                    "type": "string"
+                },
+                "min": {
+                    "type": "boolean"
+                },
+                "mutal_contact": {
+                    "type": "boolean"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "photo": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "restricted": {
+                    "type": "boolean"
+                },
+                "restriction_reason": {
+                    "type": "string"
+                },
+                "self": {
+                    "type": "boolean"
+                },
+                "sex": {
+                    "type": "integer"
+                },
+                "show_contact_phone": {
+                    "type": "boolean"
+                },
+                "star_mark": {
+                    "type": "boolean"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "user_id": {
+                    "type": "integer"
+                },
+                "user_lable": {
+                    "type": "integer"
+                },
+                "user_level": {
+                    "type": "integer"
+                },
+                "user_type": {
+                    "type": "integer"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "verified": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "moment.Comment": {
+            "type": "object",
+            "properties": {
+                "AtEntity": {
+                    "description": "AtEntity @处理\n@inject_tag: db:\"at_entity\"",
+                    "type": "string"
+                },
+                "CommentID": {
+                    "description": "CommentID 评论id\n@inject_tag: db:\"comment_id\"",
+                    "type": "integer"
+                },
+                "Content": {
+                    "description": "Content 内容\n@inject_tag: db:\"content\"",
+                    "type": "string"
+                },
+                "ContentType": {
+                    "description": "ContentType 正文类别 1文字 2图片 3视频\n@inject_tag: db:\"content_type\"",
+                    "type": "integer"
+                },
+                "CreateAt": {
+                    "description": "CreateAt 回复时间\n@inject_tag: db:\"create_at\"",
+                    "type": "integer"
+                },
+                "CreateBy": {
+                    "description": "CreateBy 回复人\n@inject_tag: db:\"create_by\"",
+                    "type": "integer"
+                },
+                "Creator": {
+                    "description": "回复人用户信息",
+                    "$ref": "#/definitions/imapigateway.UserInfo"
+                },
+                "Entitys": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/moment.HighLight"
+                    }
+                },
+                "ForumID": {
+                    "description": "ForumID 主贴id\n@inject_tag: db:\"forum_id\"",
+                    "type": "integer"
+                },
+                "ForumUser": {
+                    "description": "@inject_tag: db:\"forum_user\"",
+                    "type": "integer"
+                },
+                "HasThumb": {
+                    "type": "boolean"
+                },
+                "ID": {
+                    "description": "ID 主键\n@inject_tag: db:\"id\"",
+                    "type": "integer"
+                },
+                "Medias": {
+                    "description": "媒体文件",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/moment.Media"
+                    }
+                },
+                "ReplayID": {
+                    "description": "ReplayID 回复id\n@inject_tag: db:\"replay_id\"",
+                    "type": "integer"
+                },
+                "ReplayUID": {
+                    "description": "ReplayUID 回复人\n@inject_tag: db:\"replay_uid\"",
+                    "type": "integer"
+                },
+                "ReplayUser": {
+                    "$ref": "#/definitions/imapigateway.UserInfo"
+                },
+                "SubComment": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/moment.Comment"
+                    }
+                },
+                "SubComments": {
+                    "description": "回复次数\n@inject_tag: db:\"sub_comments\"",
+                    "type": "integer"
+                },
+                "SupID": {
+                    "description": "SupID 一级评论ID\n@inject_tag: db:\"sup_id\"",
+                    "type": "integer"
+                },
+                "SupUser": {
+                    "description": "SupUser 一级评论人\n@inject_tag: db:\"sup_user\"",
+                    "type": "integer"
+                },
+                "ThumbUp": {
+                    "description": "ThumbUp 点赞次数\n@inject_tag: db:\"thumb_up\"",
+                    "type": "integer"
+                }
+            }
+        },
+        "moment.Follow": {
+            "type": "object",
+            "properties": {
+                "CreateAt": {
+                    "description": "CreateAt 关注时间\n@inject_tag: db:\"create_at\"",
+                    "type": "integer"
+                },
+                "CreateBy": {
+                    "description": "UserID 用户ID\n@inject_tag: db:\"create_by\"",
+                    "type": "integer"
+                },
+                "EachOther": {
+                    "description": "EachOther 是否互相关注\n@inject_tag: db:\"each_other\" update:\"force\"",
+                    "type": "integer"
+                },
+                "FollowID": {
+                    "description": "@inject_tag: db:\"follow_id\"",
+                    "type": "integer"
+                },
+                "FollowSource": {
+                    "description": "FollowSource 关注来源 给直播使用 暂不开启\n@inject_tag: db:\"follow_source\"",
+                    "type": "integer"
+                },
+                "FollowUID": {
+                    "description": "FollowUID 被关注人ID\n@inject_tag: db:\"follow_uid\"",
+                    "type": "integer"
+                },
+                "ID": {
+                    "description": "@inject_tag: db:\"id\"",
+                    "type": "integer"
+                }
+            }
+        },
+        "moment.ForumFriend": {
+            "type": "object",
+            "properties": {
+                "CommentCount": {
+                    "description": "回复次数\n@inject_tag: db:\"comment_count\"",
+                    "type": "integer"
+                },
+                "Comments": {
+                    "description": "Comments 评论",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/moment.Comment"
+                    }
+                },
+                "Content": {
+                    "description": "发贴正文\n@inject_tag: db:\"content\"",
+                    "type": "string"
+                },
+                "ContentEntity": {
+                    "description": "内容解析@7 URL高亮\n@inject_tag: db:\"content_entity\"",
+                    "type": "string"
+                },
+                "ContentType": {
+                    "description": "1纯文字 2图片 3视频\n@inject_tag: db:\"content_type\"",
+                    "type": "integer"
+                },
+                "CreateAt": {
+                    "description": "发贴时间\n@inject_tag: db:\"create_at\"",
+                    "type": "integer"
+                },
+                "CreateBy": {
+                    "description": "用户编号\n@inject_tag: db:\"create_by\"",
+                    "type": "integer"
+                },
+                "Creator": {
+                    "description": "Creator 发帖人",
+                    "$ref": "#/definitions/imapigateway.UserInfo"
+                },
+                "Entitys": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/moment.HighLight"
+                    }
+                },
+                "ForumID": {
+                    "description": "发贴编号\n@inject_tag: db:\"forum_id\"",
+                    "type": "integer"
+                },
+                "HasFollow": {
+                    "description": "HasFollow 是否关注",
+                    "type": "boolean"
+                },
+                "HasThumb": {
+                    "description": "HasThumb 是否点赞",
+                    "type": "boolean"
+                },
+                "ID": {
+                    "description": "@inject_tag: db:\"id\"",
+                    "type": "integer"
+                },
+                "IsRecommend": {
+                    "description": "IsRecommend 是否推荐帖子",
+                    "type": "boolean"
+                },
+                "Latitude": {
+                    "description": "纬度\n@inject_tag: db:\"latitude\"",
+                    "type": "number"
+                },
+                "LimitVIP": {
+                    "description": "推荐帖子回复限制VIP等级",
+                    "type": "integer"
+                },
+                "LocationAddress": {
+                    "description": "地理位置名称详细名称\n@inject_tag: db:\"location_address\"",
+                    "type": "string"
+                },
+                "LocationCity": {
+                    "description": "地理位置城市\n@inject_tag: db:\"location_city\"",
+                    "type": "string"
+                },
+                "LocationName": {
+                    "description": "地理位置名称\n@inject_tag: db:\"location_name\"",
+                    "type": "string"
+                },
+                "Longitude": {
+                    "description": "经度\n@inject_tag: db:\"longitude\"",
+                    "type": "number"
+                },
+                "Medias": {
+                    "description": "媒体文件",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/moment.Media"
+                    }
+                },
+                "Mention": {
+                    "description": "提及到\n@inject_tag: db:\"mention\"",
+                    "type": "string"
+                },
+                "Permission": {
+                    "description": "权限1公开2私密3粉丝4指定部分可见5不给谁看\n@inject_tag: db:\"permission\"",
+                    "type": "integer"
+                },
+                "PermissionUser": {
+                    "description": "特别用户\n@inject_tag: db:\"permission_user\"",
+                    "type": "string"
+                },
+                "RoundNum": {
+                    "type": "integer"
+                },
+                "ThumbUp": {
+                    "description": "点赞次数\n@inject_tag: db:\"thumb_up\"",
+                    "type": "integer"
+                },
+                "ThumbUserInfos": {
+                    "description": "ThumbUserInfos 点赞人的用户信息",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/imapigateway.UserInfo"
+                    }
+                },
+                "ThumbUsers": {
+                    "description": "ThumbUsers 点赞用户 默认给10条 如果有更多 请求点赞的page路由",
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "Topic": {
+                    "description": "话题\n@inject_tag: db:\"topic\"",
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "Type": {
+                    "description": "帖子类型 同城 足球 电影。。。\n@inject_tag: db:\"type\"",
+                    "type": "integer"
+                },
+                "UserID": {
+                    "description": "所属用户ID\n@inject_tag: db:\"user_id\"",
+                    "type": "integer"
+                },
+                "ViewState": {
+                    "description": "可见状态\n@inject_tag: db:\"view_state\"",
+                    "type": "integer"
+                }
+            }
+        },
+        "moment.ForumIgnore": {
+            "type": "object",
+            "properties": {
+                "CreateAt": {
+                    "description": "CreateAt 发贴时间\n@inject_tag: db:\"create_at\"",
+                    "type": "integer"
+                },
+                "CreateBy": {
+                    "description": "CreateBy 用户编号\n@inject_tag: db:\"create_by\"",
+                    "type": "integer"
+                },
+                "ForumID": {
+                    "description": "@inject_tag: db:\"forum_id\"",
+                    "type": "integer"
+                },
+                "ID": {
+                    "description": "@inject_tag: db:\"id\"",
+                    "type": "integer"
+                },
+                "IgnoreID": {
+                    "description": "@inject_tag: db:\"ignore_id\"",
+                    "type": "integer"
+                }
+            }
+        },
+        "moment.HighLight": {
+            "type": "object",
+            "properties": {
+                "AccessHash": {
+                    "type": "integer"
+                },
+                "Limit": {
+                    "type": "integer"
+                },
+                "Offset": {
+                    "type": "integer"
+                },
+                "Type": {
+                    "type": "integer"
+                },
+                "ULimit": {
+                    "type": "integer"
+                },
+                "UOffset": {
+                    "type": "integer"
+                },
+                "UserID": {
+                    "type": "integer"
+                },
+                "UserName": {
+                    "type": "string"
+                }
+            }
+        },
+        "moment.IgnoreSlice": {
+            "type": "object",
+            "properties": {
+                "Ignores": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/moment.UserIgnore"
+                    }
+                }
+            }
+        },
+        "moment.Media": {
+            "type": "object",
+            "properties": {
+                "CreateAt": {
+                    "description": "CreateTime 创建时间\n@inject_tag: db:\"create_at\"",
+                    "type": "integer"
+                },
+                "DeleteAt": {
+                    "description": "@inject_tag: db:\"delete_at\"",
+                    "type": "integer"
+                },
+                "Duration": {
+                    "description": "Duration 视频文件时长\n@inject_tag: db:\"duration\"",
+                    "type": "integer"
+                },
+                "Ext": {
+                    "description": "Ext 附件类型 1=表示图片(bmp、jpg、jpeg、png) 2=视频(gif、mp4等) 3=音频 4=DOC文件pdf,txt, doc,docx, xls, ppt 等 5=压缩文件(zip,rar,tar) 6=需要获取其它数据URL 7=其它\n@inject_tag: db:\"ext\"",
+                    "type": "integer"
+                },
+                "Hash": {
+                    "description": "Hash 换算出来的文件的hash 值\n@inject_tag: db:\"hash\"",
+                    "type": "string"
+                },
+                "Height": {
+                    "description": "Height 图片尺寸\n@inject_tag: db:\"height\"",
+                    "type": "integer"
+                },
+                "ID": {
+                    "description": "@inject_tag: db:\"id\"",
+                    "type": "integer"
+                },
+                "MainID": {
+                    "description": "ForumID 发贴编号\n@inject_tag: db:\"main_id\"",
+                    "type": "integer"
+                },
+                "Name": {
+                    "description": "Name 文件名\n@inject_tag: db:\"name\"",
+                    "type": "string"
+                },
+                "Region": {
+                    "description": "Region s3 区域 以后可能需要分区域存储\n@inject_tag: db:\"region\"",
+                    "type": "string"
+                },
+                "Seq": {
+                    "description": "Seq 图片序号\n@inject_tag: db:\"seq\"",
+                    "type": "integer"
+                },
+                "Size": {
+                    "description": "Size 文件大小\n@inject_tag: db:\"size\"",
+                    "type": "integer"
+                },
+                "Status": {
+                    "description": "@inject_tag: db:\"status\"",
+                    "type": "integer"
+                },
+                "Thum": {
+                    "description": "Thum 缩略图信息\n@inject_tag: db:\"thum\"",
+                    "type": "string"
+                },
+                "ThumSize": {
+                    "description": "ThumSize 缩略图大小\n@inject_tag: db:\"thum_size\"",
+                    "type": "integer"
+                },
+                "Width": {
+                    "description": "Width 图片尺寸\n@inject_tag: db:\"width\"",
+                    "type": "integer"
+                }
+            }
+        },
+        "moment.Tag": {
+            "type": "object",
+            "properties": {
+                "CreateAt": {
+                    "description": "CreateAt 创建时间\n@inject_tag: db:\"create_at\"",
+                    "type": "integer"
+                },
+                "CreateBy": {
+                    "description": "CreateBy 创建人\n@inject_tag: db:\"create_by\"",
+                    "type": "integer"
+                },
+                "ID": {
+                    "description": "ID 主键\n@inject_tag: db:\"id\"",
+                    "type": "integer"
+                },
+                "TagID": {
+                    "description": "TagID 标签ID\n@inject_tag: db:\"tag_id\"",
+                    "type": "integer"
+                },
+                "TagName": {
+                    "description": "TagName 标签名称(*此字段必传)\n@inject_tag: db:\"tag_name\"",
+                    "type": "string"
+                }
+            }
+        },
+        "moment.TagAddReq": {
+            "type": "object",
+            "properties": {
+                "Tag": {
+                    "$ref": "#/definitions/moment.Tag"
+                },
+                "UserTags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/moment.UserTag"
+                    }
+                }
+            }
+        },
+        "moment.Thumb": {
+            "type": "object",
+            "properties": {
+                "CommentID": {
+                    "description": "ForumID 帖子ID\n@inject_tag: db:\"comment_id\"",
+                    "type": "integer"
+                },
+                "CommentUID": {
+                    "description": "ForumUID帖子拥有者Id\n@inject_tag: db:\"comment_uid\"",
+                    "type": "integer"
+                },
+                "CreateAt": {
+                    "description": "@inject_tag: db:\"create_at\"\nCreateAt 创建时间",
+                    "type": "integer"
+                },
+                "CreateBy": {
+                    "description": "@inject_tag: db:\"create_by\"\nCreateBy 创建人",
+                    "type": "integer"
+                },
+                "Creator": {
+                    "$ref": "#/definitions/imapigateway.UserInfo"
+                },
+                "ForumID": {
+                    "description": "ForumID 帖子ID\n@inject_tag: db:\"forum_id\"",
+                    "type": "integer"
+                },
+                "ForumUID": {
+                    "description": "ForumUID帖子拥有者Id\n@inject_tag: db:\"forum_uid\"",
+                    "type": "integer"
+                },
+                "ID": {
+                    "description": "@inject_tag: db:\"id\"",
+                    "type": "integer"
+                },
+                "ThumbID": {
+                    "description": "ThumbID点赞Id\n@inject_tag: db:\"thumb_id\"",
+                    "type": "integer"
+                },
+                "UpDown": {
+                    "description": "UpDown 1点赞2踩\n@inject_tag: db:\"up_down\"",
+                    "type": "integer"
+                }
+            }
+        },
+        "moment.UserIgnore": {
+            "type": "object",
+            "properties": {
+                "CreateAt": {
+                    "description": "CreateAt 创建时间\n@inject_tag: db:\"create_at\"",
+                    "type": "integer"
+                },
+                "CreateBy": {
+                    "description": "CreateBy 创建人\n@inject_tag: db:\"create_by\"",
+                    "type": "integer"
+                },
+                "ID": {
+                    "description": "ID 主键\n@inject_tag: db:\"id\"",
+                    "type": "integer"
+                },
+                "IgnoreID": {
+                    "description": "UserIgnoreID id\n@inject_tag: db:\"ignore_id\"",
+                    "type": "integer"
+                },
+                "Look": {
+                    "description": "@inject_tag: db:\"look\"",
+                    "type": "integer"
+                },
+                "UserID": {
+                    "description": "UserID 朋友\n@inject_tag: db:\"user_id\"",
+                    "type": "integer"
+                }
+            }
+        },
+        "moment.UserStatus": {
+            "type": "object",
+            "properties": {
+                "CreateAt": {
+                    "description": "CreateAt 创建时间\n@inject_tag: db:\"create_at\"",
+                    "type": "integer"
+                },
+                "FansCount": {
+                    "description": "FansCount 粉丝数\n@inject_tag: db:\"fans_count\"",
+                    "type": "integer"
+                },
+                "FollowCount": {
+                    "description": "FollowCount 关注数\n@inject_tag: db:\"follow_count\"",
+                    "type": "integer"
+                },
+                "FollowUID": {
+                    "type": "integer"
+                },
+                "FollowVersion": {
+                    "description": "Version 版本号\n@inject_tag: db:\"follow_version\"",
+                    "type": "integer"
+                },
+                "FollowVersionRead": {
+                    "description": "Version 版本号\n@inject_tag: db:\"follow_version_read\"",
+                    "type": "integer"
+                },
+                "ForumCount": {
+                    "description": "ForumCount 发帖数\n@inject_tag: db:\"forum_count\"",
+                    "type": "integer"
+                },
+                "FriendUID": {
+                    "type": "integer"
+                },
+                "FriendVersion": {
+                    "description": "Version 版本号\n@inject_tag: db:\"friend_version\"",
+                    "type": "integer"
+                },
+                "FriendVersionRead": {
+                    "description": "Version 版本号\n@inject_tag: db:\"friend_version_read\"",
+                    "type": "integer"
+                },
+                "HomeBackground": {
+                    "description": "Version 背景图\n@inject_tag: db:\"home_background\"",
+                    "type": "string"
+                },
+                "ID": {
+                    "description": "ID 主键\n@inject_tag: db:\"id\"",
+                    "type": "integer"
+                },
+                "IsFriend": {
+                    "type": "boolean"
+                },
+                "RecommendUID": {
+                    "type": "integer"
+                },
+                "RecommendVersion": {
+                    "description": "RecommendVersion 推荐版本号",
+                    "type": "integer"
+                },
+                "RecommendVersionRead": {
+                    "description": "Version 版本号\n@inject_tag: db:\"recommend_version_read\"",
+                    "type": "integer"
+                },
+                "ThumbCount": {
+                    "description": "ThumbCount 点赞数\n@inject_tag: db:\"thumb_count\"",
+                    "type": "integer"
+                },
+                "UpdateAt": {
+                    "description": "CreateAt 创建时间\n@inject_tag: db:\"update_at\"",
+                    "type": "integer"
+                },
+                "User": {
+                    "$ref": "#/definitions/imapigateway.UserInfo"
+                },
+                "UserID": {
+                    "description": "UserID 用户\n@inject_tag: db:\"user_id\"",
+                    "type": "integer"
+                }
+            }
+        },
+        "moment.UserTag": {
+            "type": "object",
+            "properties": {
+                "CreateAt": {
+                    "description": "CreateAt 创建时间\n@inject_tag: db:\"create_at\"",
+                    "type": "integer"
+                },
+                "CreateBy": {
+                    "description": "CreateBy 创建人\n@inject_tag: db:\"create_by\"",
+                    "type": "integer"
+                },
+                "ID": {
+                    "description": "ID 主键\n@inject_tag: db:\"id\"",
+                    "type": "integer"
+                },
+                "TagID": {
+                    "description": "ForumID 帖子ID\n@inject_tag: db:\"forum_id\"\nint32 ForumID  =3;\nTagID 标签ID\n@inject_tag: db:\"tag_id\"",
+                    "type": "integer"
+                },
+                "UserID": {
+                    "description": "UserID 用户(*此字段必传)\n@inject_tag: db:\"user_id\"",
+                    "type": "integer"
+                },
+                "UserTagID": {
+                    "description": "UserTagID 用户标签ID\n@inject_tag: db:\"user_tag_id\"",
+                    "type": "integer"
+                }
+            }
+        },
+        "pkg.ResponseMessage": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "object"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "integer"
+                }
+            }
+        },
+        "svc.ForumYellow": {
+            "type": "object",
+            "properties": {
+                "forumID": {
+                    "type": "integer"
+                },
+                "indexs": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "type": {
+                    "type": "integer"
+                },
+                "userID": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,18 @@
+syntax = "proto3";
+package moment;
+
+
+//通知朋友圈消息 
+service TokenService {
+    rpc UserToken(UserTokenReq) returns (UserTokenRep){};
+}
+
+message UserTokenReq{
+    int32 UserID  = 1; //用户ID
+}
+
+message UserTokenRep{
+    int32 Code = 1; //1为成功,0为失败
+    string Msg = 2; //返回描述
+    string Token = 3; //用户Token
+}

@@ -1,0 +1,446 @@
+syntax = "proto3";
+package moment;
+
+
+import "media.proto";
+import "comment.proto";
+import "common.proto";
+option go_package = ".;moment";
+
+//通知朋友圈消息 
+service ForumDBService {
+	rpc TopicPage(ForumTopicPageReq)returns(ForumTopicPageRep){};
+	rpc RecommendPage(RecommendPageReq)returns(RecommendPageRep){};
+	rpc FriendPage(ForumFriendPageReq)returns(ForumFriendPageRep){};
+
+
+	// rpc FollowFourmPage(FollowFourmPageReq)returns(FollowFourmPageRep){};
+	rpc OtherMainPage(OtherMainPageReq)returns(OtherMainPageRep){};
+	rpc ForumOtherMainByMouth(ForumOtherMainByMouthReq)returns(ForumOtherMainByMouthResp){};
+	rpc ForumGetWithMedia(ForumGetWithMediaReq)returns(ForumGetWithMediaResp){};
+
+	rpc SelfMainPage(SelfMainPageReq)returns(SelfMainPageRep){};
+
+	
+	rpc AddRecommend(ForumRecommend)returns(ForumRecommend){};
+
+	rpc AddFriend(ForumFriend)returns(ForumFriend){};
+	rpc AddMySelf(ForumFriend)returns(ForumFriend){};
+
+	rpc AddTopic(ForumTopic)returns(ForumTopic){};
+
+	rpc Delete(ForumFriend)returns(ForumFriend){};
+	rpc Get(ForumGetReq)returns(ForumFriend){};
+	rpc UserDelete(ForumFriend)returns(ForumFriend){};
+	rpc Check(ForumFriend)returns(ForumFriend){};
+	rpc Ignore(ForumIgnore)returns(ForumIgnore){};
+
+	rpc GetNewestFromCache(ForumFriend)returns(ForumFriend){};
+
+	rpc ForumFriendDisableView(ForumFriend)returns(ForumFriend){};//权限7
+
+	
+
+	rpc ParticipatingFriends(ParticipatingFriendsMsg) returns(ParticipatingFriendsMsg){}; //参与帖子共同用户
+
+
+
+}
+
+
+message ForumGetWithMediaReq{
+	int32 UserID = 1;
+	int32 FriendID = 2;
+	int64 ForumID = 3;
+	int32 Limit = 4;
+}
+
+message ForumGetWithMediaResp{
+	repeated ForumFriend Forums= 1;
+}
+
+
+message ForumOtherMainByMouthReq{
+	int32 UserID = 1;
+	int32 FriendID = 2;
+	int64 StartAt = 3;
+	int64 EndAt = 4;
+}
+message ForumOtherMainByMouthResp{
+	repeated ForumFriend Forums= 1;
+}
+
+message OtherMainPageReq{
+	int32 FriendID = 1;//朋友ID
+	int32 UserID = 2; //用户ID
+	int64 ForumID  =3;
+	int32 RoundNum = 4;//第几次查询
+	int32 Limit     =5;
+}
+
+
+message OtherMainPageRep{
+	repeated ForumFriend Forums= 1;
+}
+
+message SelfMainPageReq{
+	int32 UserID = 1;
+	int64 ForumID  =2;
+	int32 Limit     =3;
+}
+
+message SelfMainPageRep{
+	repeated ForumFriend Forums= 1;
+}
+
+
+message FollowFourmPageReq{
+	int32 CreateAt = 1;
+	int32 UserID = 2;
+	int32 Limit = 3;
+	int32 CommentLimit = 4;
+	int32 ThumbLimit = 5;
+	int32 ReplayLimit = 6;
+}
+
+message FollowFourmPageRep{
+	repeated ForumFriend Forums= 1;
+}
+
+
+message RecommendPageReq{
+	int32 UserID = 1;
+	int64 ForumID  =2;
+	int32 Limit     =3;
+}
+
+message RecommendPageRep{
+	repeated ForumRecommend Forums= 1;
+}
+
+
+
+
+
+message ForumGetReq{
+	     //操作人
+		 int32 CreateBy =1;
+		 //帖子号
+		 int64 ForumID  =2; 
+		 // 发帖人
+		 int32 ForumUser =3; 
+		 //CommentLimit 评论查询条数
+
+		//  int64 CommentLimit     =4;
+		//  string CommentSort = 5;
+		//  string CommentOrder = 6;
+		 //ReplayLimit 回复条数
+		//  int64 ReplayLimit     =7;
+		//  string ReplaySort = 8;
+		//  string ReplayOrder = 9;
+		//  bool IsFriend = 10;
+		//  int64 ThumbupLimit =11;
+		 repeated int32 Friends = 12;
+}
+
+message ParticipatingFriendsMsg{
+	int64 ForumID  =1;
+	repeated int32 friends = 2;
+}
+
+
+
+
+// message Response{
+// 	bool Status = 1;
+// 	string Message = 2;
+// }
+
+message ForumFriendPageReq{
+	int32 UserID =1; 
+	int64 ForumID  =2;
+	int32 Limit     =3;
+}
+
+message ForumFriendPageRep{
+	repeated ForumFriend Forums = 1;
+}
+
+
+message ForumTopicPageReq{
+	int64 TopicID = 1;
+	int32 UserID =2; 
+	int64 ForumID  =3;
+	int32 Limit     =4;
+}
+
+message ForumTopicPageRep{
+	repeated ForumTopic Forums = 1;
+}
+
+
+
+
+message ForumIgnore{
+	// @inject_tag: db:"id"
+	int64 ID = 1;
+	// @inject_tag: db:"ignore_id"
+	int64 IgnoreID = 2;
+	// @inject_tag: db:"forum_id"
+	int64 ForumID = 3;
+	// CreateBy 用户编号
+	// @inject_tag: db:"create_by"
+	int32 CreateBy =4;
+	// CreateAt 发贴时间
+	// @inject_tag: db:"create_at"
+	int64 CreateAt =5;
+}
+
+
+
+
+
+message ForumRecommend {
+	//
+	// @inject_tag: db:"id"
+	int64 ID = 1; 
+	//发贴编号
+	// @inject_tag: db:"forum_id"
+	int64 ForumID = 2; 
+	//帖子类型 同城 足球 电影。。。
+	// @inject_tag: db:"type" 
+	int32 Type = 3; 
+	//1纯文字 2图片 3视频
+	// @inject_tag: db:"content_type" 
+	int32 ContentType = 4; 
+	//发贴正文
+	// @inject_tag: db:"content" 
+	string Content = 5; 
+	//经度
+	// @inject_tag: db:"longitude" 
+	double Longitude = 6; 
+	//纬度
+	// @inject_tag: db:"latitude" 
+	double Latitude = 7; 
+	//地理位置城市
+	// @inject_tag: db:"location_city" 
+	string LocationCity = 8; 
+	//地理位置名称
+	// @inject_tag: db:"location_name" 
+	string LocationName = 9; 
+	//地理位置名称详细名称
+	// @inject_tag: db:"location_address" 
+	string LocationAddress = 10; 
+	//发贴时间
+	// @inject_tag: db:"create_at" 
+	int64 CreateAt = 11; 
+	//用户编号
+	// @inject_tag: db:"create_by" 
+	int32 CreateBy = 12; 
+	//内容解析@7 URL高亮
+	// @inject_tag: db:"content_entity" 
+	string ContentEntity = 13; 
+	//提及到
+	// @inject_tag: db:"mention" 
+	string Mention = 14; 
+	//话题
+	// @inject_tag: db:"topic" 
+	string Topic = 15; 
+	//点赞次数
+	// @inject_tag: db:"thumb_up" 
+	int64 ThumbUp = 16; 
+	//回复次数
+	// @inject_tag: db:"comment_count" 
+	int64 CommentCount = 17; 
+	// 媒体文件
+	repeated  Media Medias  = 18;
+	repeated HighLight Entitys =19;//[]*pkg.HighLight
+	// HasThumb 是否点赞
+	bool HasThumb = 20;
+	//  HasFollow 是否关注
+	bool HasFollow = 21;
+	//ThumbUsers 点赞用户 默认给10条 如果有更多 请求点赞的page路由
+	repeated int32 ThumbUsers=22;
+	// Comments 评论
+	repeated Comment Comments = 23;
+	//ThumbUserInfos 点赞人的用户信息
+	repeated imapigateway.userInfo ThumbUserInfos = 24;
+	//Creator 发帖人
+	imapigateway.userInfo Creator =25;
+	//IsRecommend 是否推荐帖子
+	bool IsRecommend = 26;
+	//推荐帖子回复限制VIP等级
+	int32 LimitVIP = 27;
+	}
+
+
+
+
+
+
+
+	
+message ForumFriend {
+	//
+	// @inject_tag: db:"id"
+	int64 ID = 1; 
+	//所属用户ID
+	// @inject_tag: db:"user_id"
+	int32 UserID = 2; 
+	//发贴编号
+	// @inject_tag: db:"forum_id"
+	int64 ForumID = 3; 
+	//帖子类型 同城 足球 电影。。。
+	// @inject_tag: db:"type" 
+	int32 Type = 4; 
+	//1纯文字 2图片 3视频
+	// @inject_tag: db:"content_type" 
+	int32 ContentType = 5; 
+	//发贴正文
+	// @inject_tag: db:"content" 
+	string Content = 6; 
+	//经度
+	// @inject_tag: db:"longitude" 
+	double Longitude = 7; 
+	//纬度
+	// @inject_tag: db:"latitude" 
+	double Latitude = 8; 
+	//地理位置城市
+	// @inject_tag: db:"location_city" 
+	string LocationCity = 9; 
+	//地理位置名称
+	// @inject_tag: db:"location_name" 
+	string LocationName = 10; 
+	//地理位置名称详细名称
+	// @inject_tag: db:"location_address" 
+	string LocationAddress = 11; 
+	//发贴时间
+	// @inject_tag: db:"create_at" 
+	int64 CreateAt = 12; 
+	//用户编号
+	// @inject_tag: db:"create_by" 
+	int32 CreateBy = 13; 
+	//内容解析@7 URL高亮
+	// @inject_tag: db:"content_entity" 
+	string ContentEntity = 14; 
+	//提及到
+	// @inject_tag: db:"mention" 
+	string Mention = 15; 
+	//话题
+	// @inject_tag: db:"topic" 
+	string Topic = 16; 
+	//权限1公开2私密3粉丝4指定部分可见5不给谁看
+	// @inject_tag: db:"permission" 
+	int32 Permission = 17; 
+	//特别用户
+	// @inject_tag: db:"permission_user" 
+	string PermissionUser = 18; 
+		//点赞次数
+	// @inject_tag: db:"thumb_up" 
+	int64 ThumbUp = 19; 
+	//回复次数
+	// @inject_tag: db:"comment_count" 
+	int64 CommentCount = 20; 
+	//可见状态
+	// @inject_tag: db:"view_state" 
+	int64 ViewState = 21; 
+	// 媒体文件
+	repeated  Media Medias  = 22;
+	repeated HighLight Entitys =23;//[]*pkg.HighLight
+	// HasThumb 是否点赞
+	bool HasThumb = 24;
+	//  HasFollow 是否关注
+	bool HasFollow = 25;
+	//ThumbUsers 点赞用户 默认给10条 如果有更多 请求点赞的page路由
+	repeated int32 ThumbUsers=26;
+	// Comments 评论
+	repeated Comment Comments = 27;
+	//ThumbUserInfos 点赞人的用户信息
+	repeated imapigateway.userInfo ThumbUserInfos = 28;
+	//Creator 发帖人
+	imapigateway.userInfo Creator =29;
+	//IsRecommend 是否推荐帖子
+	bool IsRecommend = 30;
+	//推荐帖子回复限制VIP等级
+	int32 LimitVIP = 31;
+	int32 RoundNum = 32;//关注查询第几轮
+	}
+
+
+
+
+message ForumTopic {
+	//
+	// @inject_tag: db:"id"
+	int64 ID = 1; 
+	//所属用户id
+	// @inject_tag: db:"topic_id"
+	int64 TopicID = 2; 
+	//发贴编号
+	// @inject_tag: db:"forum_id"
+	int64 ForumID = 3; 
+	//帖子类型 同城 足球 电影。。。
+	// @inject_tag: db:"type" 
+	int32 Type = 4; 
+	//1纯文字 2图片 3视频
+	// @inject_tag: db:"content_type" 
+	int32 ContentType = 5; 
+	//发贴正文
+	// @inject_tag: db:"content" 
+	string Content = 6; 
+	//经度
+	// @inject_tag: db:"longitude" 
+	double Longitude = 7; 
+	//纬度
+	// @inject_tag: db:"latitude" 
+	double Latitude = 8; 
+	//地理位置城市
+	// @inject_tag: db:"location_city" 
+	string LocationCity = 9; 
+	//地理位置名称
+	// @inject_tag: db:"location_name" 
+	string LocationName = 10; 
+	//地理位置名称详细名称
+	// @inject_tag: db:"location_address" 
+	string LocationAddress = 11; 
+	//发贴时间
+	// @inject_tag: db:"create_at" 
+	int64 CreateAt = 12; 
+	//用户编号
+	// @inject_tag: db:"create_by" 
+	int32 CreateBy = 13; 
+	//内容解析@7 URL高亮
+	// @inject_tag: db:"content_entity" 
+	string ContentEntity = 14; 
+	//提及到
+	// @inject_tag: db:"mention" 
+	string Mention = 15; 
+	//话题
+	// @inject_tag: db:"topic" 
+	string Topic = 16; 
+	//点赞次数
+	// @inject_tag: db:"thumb_up" 
+	int64 ThumbUp = 17; 
+	//回复次数
+	// @inject_tag: db:"comment_count" 
+	int64 CommentCount = 18; 
+					// 媒体文件
+	repeated  Media Medias  = 19;
+	repeated HighLight Entitys =20;//[]*pkg.HighLight
+	// HasThumb 是否点赞
+	bool HasThumb = 21;
+	//  HasFollow 是否关注
+	bool HasFollow = 22;
+	//ThumbUsers 点赞用户 默认给10条 如果有更多 请求点赞的page路由
+	repeated int32 ThumbUsers=23;
+	// Comments 评论
+	repeated Comment Comments = 24;
+	//ThumbUserInfos 点赞人的用户信息
+	repeated imapigateway.userInfo ThumbUserInfos = 25;
+	//Creator 发帖人
+	imapigateway.userInfo Creator =26;
+	//IsRecommend 是否推荐帖子
+	bool IsRecommend = 27;
+	//推荐帖子回复限制VIP等级
+	int32 LimitVIP = 28;
+}
